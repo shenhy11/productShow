@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.oss.mapper.OssFileMapper">
+
+    <resultMap type="com.ruoyi.oss.domain.OssFile" id="OssFileResult">
+        <result property="id"         column="id"         />
+        <result property="fileName"   column="file_name"  />
+        <result property="objectKey"  column="object_key" />
+        <result property="fileUrl"    column="file_url"   />
+        <result property="fileSize"   column="file_size"  />
+        <result property="fileType"   column="file_type"  />
+        <result property="category"   column="category"   />
+        <result property="createBy"   column="create_by"  />
+        <result property="createTime" column="create_time" />
+    </resultMap>
+
+    <sql id="selectOssFileVo">
+        SELECT id, file_name, object_key, file_url, file_size, file_type, category, create_by, create_time 
+        FROM zc_oss_file
+    </sql>
+
+    <select id="selectOssFileList" resultMap="OssFileResult">
+        <include refid="selectOssFileVo"/>
+        <where>
+            <if test="category != null and category != ''"> AND category = #{category} </if>
+        </where>
+        ORDER BY create_time DESC
+    </select>
+
+    <select id="selectOssFileById" resultMap="OssFileResult">
+        <include refid="selectOssFileVo"/>
+        WHERE id = #{id}
+    </select>
+
+    <select id="selectOssFileByObjectKey" resultMap="OssFileResult">
+        <include refid="selectOssFileVo"/>
+        WHERE object_key = #{objectKey}
+    </select>
+
+    <insert id="insertOssFile" parameterType="com.ruoyi.oss.domain.OssFile" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO zc_oss_file(
+            <if test="fileName != null and fileName != ''">file_name,</if>
+            <if test="objectKey != null and objectKey != ''">object_key,</if>
+            <if test="fileUrl != null and fileUrl != ''">file_url,</if>
+            <if test="fileSize != null">file_size,</if>
+            <if test="fileType != null">file_type,</if>
+            <if test="category != null">category,</if>
+            <if test="createBy != null">create_by,</if>
+            create_time
+        )VALUES(
+            <if test="fileName != null and fileName != ''">#{fileName},</if>
+            <if test="objectKey != null and objectKey != ''">#{objectKey},</if>
+            <if test="fileUrl != null and fileUrl != ''">#{fileUrl},</if>
+            <if test="fileSize != null">#{fileSize},</if>
+            <if test="fileType != null">#{fileType},</if>
+            <if test="category != null">#{category},</if>
+            <if test="createBy != null">#{createBy},</if>
+            sysdate()
+        )
+    </insert>
+
+    <delete id="deleteOssFileById">
+        DELETE FROM zc_oss_file WHERE id = #{id}
+    </delete>
+
+</mapper>

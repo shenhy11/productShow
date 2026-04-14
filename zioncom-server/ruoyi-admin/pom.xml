@@ -54,6 +54,13 @@
             <artifactId>ruoyi-generator</artifactId>
         </dependency>
 
+        <!-- Zioncom OSS 文件服务模块-->
+        <dependency>
+            <groupId>com.ruoyi</groupId>
+            <artifactId>zioncom-oss</artifactId>
+            <version>${ruoyi.version}</version>
+        </dependency>
+
     </dependencies>
 
     <build>

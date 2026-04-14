@@ -20,11 +20,11 @@
 
 ## 3. 后端 - OSS 文件服务模块 (zioncom-oss)
 
-- [ ] 3.1 集成云厂商 OSS SDK（阿里云 OSS / 腾讯云 COS），编写 OssConfig 配置类
-- [ ] 3.2 实现 OssService：文件上传（按类型放入 images/ / firmware/ / docs/ 前缀）、删除、生成预签名 URL
-- [ ] 3.3 实现 OssController：POST /api/oss/upload（通用上传）、GET /api/oss/download/{id}（预签名下载）
-- [ ] 3.4 实现文件管理 CRUD API（列表/筛选/删除）
-- [ ] 3.5 限制上传文件大小（图片 5MB、固件 100MB）和格式校验
+- [x] 3.1 集成云厂商 OSS SDK（阿里云 OSS / 腾讯云 COS），编写 OssConfig 配置类
+- [x] 3.2 实现 OssService：文件上传（按类型放入 images/ / firmware/ / docs/ 前缀）、删除、生成预签名 URL
+- [x] 3.3 实现 OssController：POST /api/oss/upload（通用上传）、GET /api/oss/download/{id}（预签名下载）
+- [x] 3.4 实现文件管理 CRUD API（列表/筛选/删除）
+- [x] 3.5 限制上传文件大小（图片 5MB、固件 100MB）和格式校验
 
 ## 4. 后端 - 产品管理模块 (zioncom-product)
 
