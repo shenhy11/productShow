@@ -1,0 +1,108 @@
+version: '3.8'
+
+# Zioncom 官网 - 本地开发环境编排
+services:
+
+  # MySQL 数据库
+  mysql:
+    image: mysql:8.0
+    container_name: zioncom-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_PASSWORD:-zioncom123}
+      MYSQL_DATABASE: ${MYSQL_DB:-zioncom}
+      MYSQL_DATABASE_EXTRA: ry-vue
+      TZ: Asia/Shanghai
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./zioncom-server/sql:/docker-entrypoint-initdb.d:ro
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci --default-time-zone=+08:00
+    networks:
+      - zioncom-net
+
+  # Redis 缓存
+  redis:
+    image: redis:7-alpine
+    container_name: zioncom-redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - zioncom-net
+
+  # Spring Boot API 服务
+  spring-api:
+    build:
+      context: ./zioncom-server
+      dockerfile: Dockerfile
+    container_name: zioncom-api
+    restart: unless-stopped
+    environment:
+      MYSQL_HOST: mysql
+      MYSQL_PORT: 3306
+      MYSQL_DB: ${MYSQL_DB:-zioncom}
+      MYSQL_USER: ${MYSQL_USER:-root}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:-zioncom123}
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      OSS_ENDPOINT: ${OSS_ENDPOINT:-}
+      OSS_ACCESS_KEY_ID: ${OSS_ACCESS_KEY_ID:-}
+      OSS_ACCESS_KEY_SECRET: ${OSS_ACCESS_KEY_SECRET:-}
+      OSS_BUCKET_NAME: ${OSS_BUCKET_NAME:-}
+      TZ: Asia/Shanghai
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mysql
+      - redis
+    networks:
+      - zioncom-net
+
+  # Nuxt 3 官网前台
+  nuxt-app:
+    build:
+      context: ./zioncom-nuxt
+      dockerfile: Dockerfile
+    container_name: zioncom-web
+    restart: unless-stopped
+    environment:
+      NUXT_PUBLIC_API_BASE: http://spring-api:8080
+      TZ: Asia/Shanghai
+    ports:
+      - "3000:3000"
+    depends_on:
+      - spring-api
+    networks:
+      - zioncom-net
+
+  # Nginx 反向代理
+  nginx:
+    image: nginx:alpine
+    container_name: zioncom-nginx
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/conf.d:/etc/nginx/conf.d:ro
+      - ./nginx/ssl:/etc/nginx/ssl:ro
+      - admin_dist:/usr/share/nginx/admin:ro
+    depends_on:
+      - nuxt-app
+      - spring-api
+    networks:
+      - zioncom-net
+
+networks:
+  zioncom-net:
+    driver: bridge
+
+volumes:
+  mysql_data:
+  redis_data:
+  admin_dist:
