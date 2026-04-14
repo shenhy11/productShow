@@ -19,7 +19,7 @@ COPY . .
 RUN mvn clean package -DskipTests
 
 # 第二阶段：运行阶段
-FROM openjdk:8-jre-slim
+FROM eclipse-temurin:8-jre-alpine
 WORKDIR /app
 COPY --from=build /app/ruoyi-admin/target/ruoyi-admin.jar app.jar
 EXPOSE 8080
