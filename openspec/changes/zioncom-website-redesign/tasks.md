@@ -2,8 +2,8 @@
 
 - [x] 1.1 创建 Monorepo 根目录结构（zioncom-nuxt/、zioncom-admin/、zioncom-server/、docker/、nginx/、.github/workflows/）
 - [x] 1.2 初始化 RuoYi-Vue3 后端项目（clone RuoYi 脚手架），配置 MySQL 数据源和 Redis 连接
-- [ ] 1.3 初始化 RuoYi-Vue3 前端 Admin 项目，验证默认登录和权限管理功能可用
-- [ ] 1.4 初始化 Nuxt 3 前台项目（npx nuxi init），配置 SSR 模式和基础 nuxt.config.ts
+- [x] 1.3 初始化 RuoYi-Vue3 前端 Admin 项目，验证默认登录和权限管理功能可用
+- [x] 1.4 初始化 Nuxt 3 前台项目（npx nuxi init），配置 SSR 模式和基础 nuxt.config.ts
 - [ ] 1.5 创建 docker-compose.yml，编排 mysql、redis、spring-api、nuxt-app、nginx 服务
 - [ ] 1.6 配置 Nginx 反向代理规则（www → Nuxt:3000、admin → 静态文件、api → Spring:8080）
 - [ ] 1.7 验证本地 Docker Compose 一键启动全部服务
