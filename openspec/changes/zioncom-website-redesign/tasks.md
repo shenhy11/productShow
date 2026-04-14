@@ -106,7 +106,7 @@
 - [x] 13.2 实现里程碑页面（/about/milestones）：时间线组件，按年份展示
 - [x] 13.3 实现工厂与实验室页面（/about/factory-lab）：图片画廊 + 文字介绍
 - [x] 13.4 实现全球渠道页面（/worldwide）：交互式世界地图（可用 Leaflet/Mapbox）标注渠道商
-- [ ] 13.5 实现联系我们页面（/about/contact）：联系信息 + 表单提交
+- [x] 13.5 实现联系我们页面（/about/contact）：联系信息 + 表单提交
 
 ## 14. Nuxt 前台 - 技术支持
 
