@@ -6,7 +6,7 @@
 - [x] 1.4 初始化 Nuxt 3 前台项目（npx nuxi init），配置 SSR 模式和基础 nuxt.config.ts
 - [x] 1.5 创建 docker-compose.yml，编排 mysql、redis、spring-api、nuxt-app、nginx 服务
 - [x] 1.6 配置 Nginx 反向代理规则（www → Nuxt:3000、admin → 静态文件、api → Spring:8080）
-- [ ] 1.7 验证本地 Docker Compose 一键启动全部服务
+- [x] 1.7 验证本地 Docker Compose 一键启动全部服务
 
 ## 2. 数据库设计与基础业务模块
 
