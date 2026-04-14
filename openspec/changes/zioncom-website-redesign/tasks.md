@@ -76,7 +76,7 @@
 
 - [x] 9.1 配置 Nuxt 3 routeRules（SSG/ISR/SSR 混合渲染策略）
 - [x] 9.2 安装并配置 @nuxtjs/i18n 模块（中英文语言包、URL 前缀模式、hreflang 标签）
-- [ ] 9.3 创建全局布局组件（Header 导航栏含多级菜单 + 语言切换、Footer 版权信息）
+- [x] 9.3 创建全局布局组件（Header 导航栏含多级菜单 + 语言切换、Footer 版权信息）
 - [ ] 9.4 配置 API 请求 composable（useFetch 封装，自动携带 lang 参数）
 - [ ] 9.5 配置全局 SEO 默认值（title 模板、meta description、OG 标签）
 - [ ] 9.6 实现响应式断点适配（桌面/平板/手机三档媒体查询）
