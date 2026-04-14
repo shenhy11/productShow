@@ -4,6 +4,7 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
 
   app: {
+    pageTransition: { name: 'page', mode: 'out-in' },
     head: {
       titleTemplate: '%s - Zioncom',
       title: 'Zioncom Electronics',
