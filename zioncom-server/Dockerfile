@@ -1,36 +1,26 @@
-# ---- 构建阶段 ----
-FROM maven:3.9-eclipse-temurin-17 AS builder
-WORKDIR /build
-
-# 先拷贝 pom.xml 利用 Docker 缓存 Maven 依赖
+# 第一阶段：构建前端资源和打包依赖
+FROM maven:3.8.6-openjdk-8 AS build
+WORKDIR /app
 COPY pom.xml .
 COPY ruoyi-admin/pom.xml ruoyi-admin/
 COPY ruoyi-common/pom.xml ruoyi-common/
 COPY ruoyi-framework/pom.xml ruoyi-framework/
+COPY ruoyi-system/pom.xml ruoyi-system/
 COPY ruoyi-generator/pom.xml ruoyi-generator/
 COPY ruoyi-quartz/pom.xml ruoyi-quartz/
-COPY ruoyi-system/pom.xml ruoyi-system/
-
-# 先下载依赖（利用分层缓存）
-RUN mvn dependency:go-offline -B 2>/dev/null || true
-
-# 拷贝源码并构建
+COPY zioncom-oss/pom.xml zioncom-oss/
+COPY zioncom-product/pom.xml zioncom-product/
+COPY zioncom-content/pom.xml zioncom-content/
+COPY zioncom-support/pom.xml zioncom-support/
+COPY zioncom-brand/pom.xml zioncom-brand/
+# 拷贝所有源码
 COPY . .
-RUN mvn clean package -DskipTests -pl ruoyi-admin -am -B
+# 打包所有模块
+RUN mvn clean package -DskipTests
 
-# ---- 运行阶段 ----
-FROM eclipse-temurin:17-jre-alpine
+# 第二阶段：运行阶段
+FROM openjdk:8-jre-slim
 WORKDIR /app
-
-# 创建非 root 用户
-RUN addgroup -S zioncom && adduser -S zioncom -G zioncom
-
-# 拷贝构建产物
-COPY --from=builder /build/ruoyi-admin/target/ruoyi-admin-*.jar app.jar
-
-# 创建文件上传临时目录
-RUN mkdir -p /tmp/zioncom/uploadPath && chown -R zioncom:zioncom /tmp/zioncom
-
-USER zioncom
+COPY --from=build /app/ruoyi-admin/target/ruoyi-admin.jar app.jar
 EXPOSE 8080
-ENTRYPOINT ["java", "-XX:+UseContainerSupport", "-XX:MaxRAMPercentage=75.0", "-jar", "app.jar"]
+ENTRYPOINT ["java", "-jar", "app.jar", "--spring.profiles.active=prod"]
