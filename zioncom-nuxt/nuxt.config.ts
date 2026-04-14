@@ -1,5 +1,14 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
-  devtools: { enabled: true }
+  devtools: { enabled: true },
+
+  // 配置 SSG/ISR/SSR 混合渲染策略
+  routeRules: {
+    '/': { isr: 3600 },             // 首页缓存 1 小时
+    '/products/**': { isr: 3600 },  // 产品页缓存 1 小时
+    '/news/**': { isr: 1800 },      // 新闻页缓存 30 分钟
+    '/support/**': { ssr: true },   // 技术支持页面动态渲染 SSR
+    '/api/**': { proxy: 'http://zioncom-server:8080/api/**' } // API 代理转发到 Spring Boot
+  }
 })

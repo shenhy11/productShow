@@ -74,7 +74,7 @@
 
 ## 9. Nuxt 前台 - 基础框架与布局
 
-- [ ] 9.1 配置 Nuxt 3 routeRules（SSG/ISR/SSR 混合渲染策略）
+- [x] 9.1 配置 Nuxt 3 routeRules（SSG/ISR/SSR 混合渲染策略）
 - [ ] 9.2 安装并配置 @nuxtjs/i18n 模块（中英文语言包、URL 前缀模式、hreflang 标签）
 - [ ] 9.3 创建全局布局组件（Header 导航栏含多级菜单 + 语言切换、Footer 版权信息）
 - [ ] 9.4 配置 API 请求 composable（useFetch 封装，自动携带 lang 参数）
