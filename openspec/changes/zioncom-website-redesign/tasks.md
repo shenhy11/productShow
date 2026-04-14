@@ -1,6 +1,6 @@
 ## 1. 项目初始化与基础搭建
 
-- [ ] 1.1 创建 Monorepo 根目录结构（zioncom-nuxt/、zioncom-admin/、zioncom-server/、docker/、nginx/、.github/workflows/）
+- [x] 1.1 创建 Monorepo 根目录结构（zioncom-nuxt/、zioncom-admin/、zioncom-server/、docker/、nginx/、.github/workflows/）
 - [ ] 1.2 初始化 RuoYi-Vue3 后端项目（clone RuoYi 脚手架），配置 MySQL 数据源和 Redis 连接
 - [ ] 1.3 初始化 RuoYi-Vue3 前端 Admin 项目，验证默认登录和权限管理功能可用
 - [ ] 1.4 初始化 Nuxt 3 前台项目（npx nuxi init），配置 SSR 模式和基础 nuxt.config.ts
