@@ -10,13 +10,13 @@
 
 ## 2. 数据库设计与基础业务模块
 
-- [ ] 2.1 设计并创建产品相关表（product、product_category、product_spec）含双语字段
-- [ ] 2.2 设计并创建内容相关表（article、article_category）含双语字段
-- [ ] 2.3 设计并创建固件管理表（firmware、document）
-- [ ] 2.4 设计并创建技术支持表（faq、faq_category、tech_video、contact_message、support_request）
-- [ ] 2.5 设计并创建品牌展示表（milestone、worldwide_partner）
-- [ ] 2.6 设计并创建 OSS 文件记录表（sys_oss）
-- [ ] 2.7 编写 SQL 初始化脚本，包含示例数据
+- [x] 2.1 设计并创建产品相关表（product、product_category、product_spec）含双语字段
+- [x] 2.2 设计并创建内容相关表（article、article_category）含双语字段
+- [x] 2.3 设计并创建固件管理表（firmware、document）
+- [x] 2.4 设计并创建技术支持表（faq、faq_category、tech_video、contact_message、support_request）
+- [x] 2.5 设计并创建品牌展示表（milestone、worldwide_partner）
+- [x] 2.6 设计并创建 OSS 文件记录表（sys_oss）
+- [x] 2.7 编写 SQL 初始化脚本，包含示例数据
 
 ## 3. 后端 - OSS 文件服务模块 (zioncom-oss)
 
