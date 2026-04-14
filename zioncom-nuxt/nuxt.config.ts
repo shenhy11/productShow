@@ -18,6 +18,10 @@ export default defineNuxtConfig({
     }
   },
 
+  css: [
+    '@/assets/css/main.css'
+  ],
+
   // 配置 SSG/ISR/SSR 混合渲染策略
   routeRules: {
     '/': { isr: 3600 },             // 首页缓存 1 小时
