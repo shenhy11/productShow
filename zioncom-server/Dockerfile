@@ -1,5 +1,5 @@
 # 第一阶段：构建前端资源和打包依赖
-FROM maven:3.8.6-openjdk-8 AS build
+FROM maven:3.8.6-eclipse-temurin-8-alpine AS build
 WORKDIR /app
 COPY pom.xml .
 COPY ruoyi-admin/pom.xml ruoyi-admin/
@@ -13,10 +13,12 @@ COPY zioncom-product/pom.xml zioncom-product/
 COPY zioncom-content/pom.xml zioncom-content/
 COPY zioncom-support/pom.xml zioncom-support/
 COPY zioncom-brand/pom.xml zioncom-brand/
+# 拷贝配置文件
+COPY maven-settings.xml .
 # 拷贝所有源码
 COPY . .
-# 打包所有模块
-RUN mvn clean package -DskipTests
+# 打包所有模块，使用阿里云加速源
+RUN mvn -s maven-settings.xml clean package -DskipTests
 
 # 第二阶段：运行阶段
 FROM eclipse-temurin:8-jre-alpine

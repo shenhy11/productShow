@@ -1,0 +1,107 @@
+### Zioncom API 黑盒测试 - IDEA HTTP Client
+### (可在 IDEA 中直接点击旁边绿色箭头运行)
+
+@baseUrl = http://localhost:8080
+@token = {{login.response.body.token}}
+
+### 0. 登录获取 Token (如果是必须的，请替换真实账号密码)
+# @name login
+POST {{baseUrl}}/login
+Content-Type: application/json
+
+{
+  "username": "admin",
+  "password": "admin123",
+  "code": "1234",
+  "uuid": "fake-uuid"
+}
+
+> {%
+    if (response.status === 200 && response.body.token) {
+        client.global.set("token", response.body.token);
+    }
+%}
+
+
+### ==================== 1. 产品模块 API 黑盒测试 ====================
+### 1.1 获取产品列表
+GET {{baseUrl}}/api/product/product/list?pageNum=1&pageSize=10
+Authorization: Bearer {{token}}
+
+> {%
+    client.test("产品列表查询成功", function() {
+        client.assert(response.status === 200, "状态码不是200");
+        client.assert(response.body.code === 200, "业务状态码不是200");
+        client.assert(response.body.rows !== undefined, "缺少产品列表数据");
+    });
+%}
+
+### 1.2 新建产品
+POST {{baseUrl}}/api/product/product
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "model": "TEST-R100",
+  "nameZh": "测试路由器100",
+  "nameEn": "Test Router 100",
+  "categoryId": 1,
+  "status": "1",
+  "sortOrder": 10
+}
+
+> {%
+    client.test("新建产品成功", function() {
+        client.assert(response.status === 200, "状态码不是200");
+        client.assert(response.body.code === 200, "返回码非200");
+    });
+%}
+
+
+### 1.3 检索特定产品(模糊搜索 Model)
+GET {{baseUrl}}/api/product/product/list?model=TEST-R100
+Authorization: Bearer {{token}}
+
+> {%
+    client.test("可以搜到新建的产品", function() {
+        client.assert(response.status === 200);
+        client.assert(response.body.rows.length >= 1, "未检索到新建的产品");
+        
+        // 保存新建的 productId 供后续删除测试
+        client.global.set("testProductId", response.body.rows[0].id);
+    });
+%}
+
+
+### 1.4 删除刚才新建的产品 (需紧跟 1.3 运行)
+DELETE {{baseUrl}}/api/product/product/{{testProductId}}
+Authorization: Bearer {{token}}
+
+> {%
+    client.test("删除产品成功", function() {
+        client.assert(response.status === 200, "状态码不是200");
+        client.assert(response.body.code === 200, "业务状态码非200");
+    });
+%}
+
+### ==================== 2. FAQ 与 技术支持 API 黑盒测试 ====================
+### 2.1 获取 FAQ 列表
+GET {{baseUrl}}/api/support/faq/list
+Authorization: Bearer {{token}}
+
+> {%
+    client.test("FAQ列表查询成功", function() {
+        client.assert(response.status === 200, "状态码不是200");
+        client.assert(response.body.code === 200, "业务状态码不是200");
+    });
+%}
+
+### 2.2 多语言测试 (传语言标志头，假设后端有通过 header 拦截切换语言的拦截器，或前端默认传递参数)
+GET {{baseUrl}}/api/support/faq/list?lang=en
+Authorization: Bearer {{token}}
+
+> {%
+    client.test("带语言参数查询", function() {
+        client.assert(response.status === 200);
+    });
+%}
