@@ -1,0 +1,63 @@
+name: Deploy to Production
+
+on:
+  push:
+    branches:
+      - main
+
+env:
+  DOCKER_REGISTRY: registry.example.com
+  IMAGE_PREFIX: zioncom
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Log in to Docker Registry
+        uses: docker/login-action@v2
+        with:
+          registry: ${{ env.DOCKER_REGISTRY }}
+          username: ${{ secrets.REGISTRY_USERNAME }}
+          password: ${{ secrets.REGISTRY_PASSWORD }}
+
+      - name: Build and Push zioncom-server image
+        uses: docker/build-push-action@v4
+        with:
+          context: ./zioncom-server
+          file: ./zioncom-server/Dockerfile
+          push: true
+          tags: ${{ env.DOCKER_REGISTRY }}/${{ env.IMAGE_PREFIX }}/zioncom-server:latest
+
+      - name: Build and Push zioncom-admin image
+        uses: docker/build-push-action@v4
+        with:
+          context: ./zioncom-admin
+          file: ./zioncom-admin/Dockerfile
+          push: true
+          tags: ${{ env.DOCKER_REGISTRY }}/${{ env.IMAGE_PREFIX }}/zioncom-admin:latest
+
+      - name: Build and Push zioncom-nuxt image
+        uses: docker/build-push-action@v4
+        with:
+          context: ./zioncom-nuxt
+          file: ./zioncom-nuxt/Dockerfile
+          push: true
+          tags: ${{ env.DOCKER_REGISTRY }}/${{ env.IMAGE_PREFIX }}/zioncom-nuxt:latest
+
+  deploy:
+    needs: build-and-push
+    runs-on: ubuntu-latest
+    steps:
+      - name: Execute SSH to deploy
+        uses: appleboy/ssh-action@v0.1.7
+        with:
+          host: ${{ secrets.DEPLOY_HOST }}
+          username: ${{ secrets.DEPLOY_USER }}
+          key: ${{ secrets.DEPLOY_KEY }}
+          script: |
+            cd /opt/zioncom
+            docker-compose -f docker-compose.prod.yml pull
+            docker-compose -f docker-compose.prod.yml up -d
