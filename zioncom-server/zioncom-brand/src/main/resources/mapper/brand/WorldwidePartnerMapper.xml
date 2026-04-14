@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.brand.mapper.WorldwidePartnerMapper">
+  <select id="selectList" resultType="com.ruoyi.brand.domain.WorldwidePartner">SELECT * FROM zc_worldwide_partner</select>
+  <select id="selectById" resultType="com.ruoyi.brand.domain.WorldwidePartner">SELECT * FROM zc_worldwide_partner WHERE id = #{id}</select>
+  <insert id="insert" useGeneratedKeys="true" keyProperty="id">INSERT INTO zc_worldwide_partner (region,country,name,website,email,phone,address,longitude,latitude,logo_url,sort_order,status) VALUES (#{region},#{country},#{name},#{website},#{email},#{phone},#{address},#{longitude},#{latitude},#{logoUrl},#{sortOrder},#{status})</insert>
+  <update id="update">UPDATE zc_worldwide_partner SET region=#{region},country=#{country},name=#{name},website=#{website},email=#{email},phone=#{phone},address=#{address},longitude=#{longitude},latitude=#{latitude},logo_url=#{logoUrl},sort_order=#{sortOrder},status=#{status} WHERE id = #{id}</update>
+  <delete id="deleteById">DELETE FROM zc_worldwide_partner WHERE id = #{id}</delete>
+</mapper>

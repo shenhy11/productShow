@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.product.mapper.ProductMapper">
+  <select id="selectList" resultType="com.ruoyi.product.domain.Product">SELECT * FROM zc_product</select>
+  <select id="selectById" resultType="com.ruoyi.product.domain.Product">SELECT * FROM zc_product WHERE id = #{id}</select>
+  <insert id="insert" useGeneratedKeys="true" keyProperty="id">INSERT INTO zc_product (category_id,model,name_zh,name_en,summary_zh,summary_en,detail_zh,detail_en,cover_image,banner_images,status,seo_title_zh,seo_title_en,seo_desc_zh,seo_desc_en,sort_order) VALUES (#{categoryId},#{model},#{nameZh},#{nameEn},#{summaryZh},#{summaryEn},#{detailZh},#{detailEn},#{coverImage},#{bannerImages},#{status},#{seoTitleZh},#{seoTitleEn},#{seoDescZh},#{seoDescEn},#{sortOrder})</insert>
+  <update id="update">UPDATE zc_product SET category_id=#{categoryId},model=#{model},name_zh=#{nameZh},name_en=#{nameEn},summary_zh=#{summaryZh},summary_en=#{summaryEn},detail_zh=#{detailZh},detail_en=#{detailEn},cover_image=#{coverImage},banner_images=#{bannerImages},status=#{status},seo_title_zh=#{seoTitleZh},seo_title_en=#{seoTitleEn},seo_desc_zh=#{seoDescZh},seo_desc_en=#{seoDescEn},sort_order=#{sortOrder} WHERE id = #{id}</update>
+  <delete id="deleteById">DELETE FROM zc_product WHERE id = #{id}</delete>
+</mapper>

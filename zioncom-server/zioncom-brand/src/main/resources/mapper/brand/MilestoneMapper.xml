@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.brand.mapper.MilestoneMapper">
+  <select id="selectList" resultType="com.ruoyi.brand.domain.Milestone">SELECT * FROM zc_milestone</select>
+  <select id="selectById" resultType="com.ruoyi.brand.domain.Milestone">SELECT * FROM zc_milestone WHERE id = #{id}</select>
+  <insert id="insert" useGeneratedKeys="true" keyProperty="id">INSERT INTO zc_milestone (year,title_zh,title_en,desc_zh,desc_en,image_url,sort_order,status) VALUES (#{year},#{titleZh},#{titleEn},#{descZh},#{descEn},#{imageUrl},#{sortOrder},#{status})</insert>
+  <update id="update">UPDATE zc_milestone SET year=#{year},title_zh=#{titleZh},title_en=#{titleEn},desc_zh=#{descZh},desc_en=#{descEn},image_url=#{imageUrl},sort_order=#{sortOrder},status=#{status} WHERE id = #{id}</update>
+  <delete id="deleteById">DELETE FROM zc_milestone WHERE id = #{id}</delete>
+</mapper>

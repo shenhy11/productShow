@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.support.mapper.FaqMapper">
+  <select id="selectList" resultType="com.ruoyi.support.domain.Faq">SELECT * FROM zc_faq</select>
+  <select id="selectById" resultType="com.ruoyi.support.domain.Faq">SELECT * FROM zc_faq WHERE id = #{id}</select>
+  <insert id="insert" useGeneratedKeys="true" keyProperty="id">INSERT INTO zc_faq (category_id,question_zh,question_en,answer_zh,answer_en,sort_order,status) VALUES (#{categoryId},#{questionZh},#{questionEn},#{answerZh},#{answerEn},#{sortOrder},#{status})</insert>
+  <update id="update">UPDATE zc_faq SET category_id=#{categoryId},question_zh=#{questionZh},question_en=#{questionEn},answer_zh=#{answerZh},answer_en=#{answerEn},sort_order=#{sortOrder},status=#{status} WHERE id = #{id}</update>
+  <delete id="deleteById">DELETE FROM zc_faq WHERE id = #{id}</delete>
+</mapper>

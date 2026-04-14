@@ -181,6 +181,10 @@
         <module>ruoyi-generator</module>
         <module>ruoyi-common</module>
         <module>zioncom-oss</module>
+        <module>zioncom-product</module>
+        <module>zioncom-content</module>
+        <module>zioncom-support</module>
+        <module>zioncom-brand</module>
     </modules>
     <packaging>pom</packaging>
 

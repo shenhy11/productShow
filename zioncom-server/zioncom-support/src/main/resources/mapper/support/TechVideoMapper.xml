@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.support.mapper.TechVideoMapper">
+  <select id="selectList" resultType="com.ruoyi.support.domain.TechVideo">SELECT * FROM zc_tech_video</select>
+  <select id="selectById" resultType="com.ruoyi.support.domain.TechVideo">SELECT * FROM zc_tech_video WHERE id = #{id}</select>
+  <insert id="insert" useGeneratedKeys="true" keyProperty="id">INSERT INTO zc_tech_video (product_id,title_zh,title_en,desc_zh,desc_en,video_url,cover_image,duration,sort_order,status) VALUES (#{productId},#{titleZh},#{titleEn},#{descZh},#{descEn},#{videoUrl},#{coverImage},#{duration},#{sortOrder},#{status})</insert>
+  <update id="update">UPDATE zc_tech_video SET product_id=#{productId},title_zh=#{titleZh},title_en=#{titleEn},desc_zh=#{descZh},desc_en=#{descEn},video_url=#{videoUrl},cover_image=#{coverImage},duration=#{duration},sort_order=#{sortOrder},status=#{status} WHERE id = #{id}</update>
+  <delete id="deleteById">DELETE FROM zc_tech_video WHERE id = #{id}</delete>
+</mapper>

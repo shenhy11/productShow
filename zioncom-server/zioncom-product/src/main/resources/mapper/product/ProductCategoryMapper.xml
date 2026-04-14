@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.product.mapper.ProductCategoryMapper">
+  <select id="selectList" resultType="com.ruoyi.product.domain.ProductCategory">SELECT * FROM zc_product_category</select>
+  <select id="selectById" resultType="com.ruoyi.product.domain.ProductCategory">SELECT * FROM zc_product_category WHERE id = #{id}</select>
+  <insert id="insert" useGeneratedKeys="true" keyProperty="id">INSERT INTO zc_product_category (parent_id,name_zh,name_en,icon,sort_order,status) VALUES (#{parentId},#{nameZh},#{nameEn},#{icon},#{sortOrder},#{status})</insert>
+  <update id="update">UPDATE zc_product_category SET parent_id=#{parentId},name_zh=#{nameZh},name_en=#{nameEn},icon=#{icon},sort_order=#{sortOrder},status=#{status} WHERE id = #{id}</update>
+  <delete id="deleteById">DELETE FROM zc_product_category WHERE id = #{id}</delete>
+</mapper>

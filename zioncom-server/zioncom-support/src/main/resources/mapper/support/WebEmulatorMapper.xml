@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.support.mapper.WebEmulatorMapper">
+  <select id="selectList" resultType="com.ruoyi.support.domain.WebEmulator">SELECT * FROM zc_web_emulator</select>
+  <select id="selectById" resultType="com.ruoyi.support.domain.WebEmulator">SELECT * FROM zc_web_emulator WHERE id = #{id}</select>
+  <insert id="insert" useGeneratedKeys="true" keyProperty="id">INSERT INTO zc_web_emulator (product_id,model,title_zh,title_en,url,sort_order,status) VALUES (#{productId},#{model},#{titleZh},#{titleEn},#{url},#{sortOrder},#{status})</insert>
+  <update id="update">UPDATE zc_web_emulator SET product_id=#{productId},model=#{model},title_zh=#{titleZh},title_en=#{titleEn},url=#{url},sort_order=#{sortOrder},status=#{status} WHERE id = #{id}</update>
+  <delete id="deleteById">DELETE FROM zc_web_emulator WHERE id = #{id}</delete>
+</mapper>

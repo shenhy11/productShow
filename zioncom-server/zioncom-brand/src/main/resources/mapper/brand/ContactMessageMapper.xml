@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.brand.mapper.ContactMessageMapper">
+  <select id="selectList" resultType="com.ruoyi.brand.domain.ContactMessage">SELECT * FROM zc_contact_message</select>
+  <select id="selectById" resultType="com.ruoyi.brand.domain.ContactMessage">SELECT * FROM zc_contact_message WHERE id = #{id}</select>
+  <insert id="insert" useGeneratedKeys="true" keyProperty="id">INSERT INTO zc_contact_message (name,email,company,phone,subject,message,is_read) VALUES (#{name},#{email},#{company},#{phone},#{subject},#{message},#{isRead})</insert>
+  <update id="update">UPDATE zc_contact_message SET name=#{name},email=#{email},company=#{company},phone=#{phone},subject=#{subject},message=#{message},is_read=#{isRead} WHERE id = #{id}</update>
+  <delete id="deleteById">DELETE FROM zc_contact_message WHERE id = #{id}</delete>
+</mapper>

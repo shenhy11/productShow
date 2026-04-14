@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.content.mapper.ArticleMapper">
+  <select id="selectList" resultType="com.ruoyi.content.domain.Article">SELECT * FROM zc_article</select>
+  <select id="selectById" resultType="com.ruoyi.content.domain.Article">SELECT * FROM zc_article WHERE id = #{id}</select>
+  <insert id="insert" useGeneratedKeys="true" keyProperty="id">INSERT INTO zc_article (type,sub_type,title_zh,title_en,cover_image,summary_zh,summary_en,content_zh,content_en,publish_date,status,view_count,seo_title_zh,seo_title_en,seo_desc_zh,seo_desc_en,author,sort_order) VALUES (#{type},#{subType},#{titleZh},#{titleEn},#{coverImage},#{summaryZh},#{summaryEn},#{contentZh},#{contentEn},#{publishDate},#{status},#{viewCount},#{seoTitleZh},#{seoTitleEn},#{seoDescZh},#{seoDescEn},#{author},#{sortOrder})</insert>
+  <update id="update">UPDATE zc_article SET type=#{type},sub_type=#{subType},title_zh=#{titleZh},title_en=#{titleEn},cover_image=#{coverImage},summary_zh=#{summaryZh},summary_en=#{summaryEn},content_zh=#{contentZh},content_en=#{contentEn},publish_date=#{publishDate},status=#{status},view_count=#{viewCount},seo_title_zh=#{seoTitleZh},seo_title_en=#{seoTitleEn},seo_desc_zh=#{seoDescZh},seo_desc_en=#{seoDescEn},author=#{author},sort_order=#{sortOrder} WHERE id = #{id}</update>
+  <delete id="deleteById">DELETE FROM zc_article WHERE id = #{id}</delete>
+</mapper>
