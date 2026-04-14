@@ -1,29 +1,14 @@
-# ---- 构建阶段 ----
+# 第一阶段：构建打包
 FROM node:20-alpine AS builder
 WORKDIR /app
-
-# 安装依赖
-COPY package.json package-lock.json* ./
-RUN npm ci --prefer-offline 2>/dev/null || npm install
-
-# 拷贝源码并构建
+COPY package*.json ./
+RUN npm install
 COPY . .
 RUN npm run build:prod
 
-# ---- 运行阶段 ----
-FROM nginx:alpine AS runner
-
-# 拷贝构建产物到 Nginx 目录
+# 第二阶段：Nginx 部署静态文件
+FROM nginx:alpine
 COPY --from=builder /app/dist /usr/share/nginx/html
-
-# Nginx SPA 配置（所有路由回退到 index.html）
-RUN echo 'server { \
-    listen 80; \
-    root /usr/share/nginx/html; \
-    index index.html; \
-    location / { try_files $uri $uri/ /index.html; } \
-    location ~* \.(js|css|png|jpg|jpeg|gif|ico|svg|woff|woff2)$ { expires 7d; } \
-}' > /etc/nginx/conf.d/default.conf
-
+# 使用默认配置或自定义 conf（可以在docker-compose里挂载）
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]

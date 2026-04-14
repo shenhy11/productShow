@@ -127,7 +127,7 @@
 
 - [x] 16.1 编写后端 Dockerfile（基于 JDK 镜像，mvn package 多阶段构建）
 - [x] 16.2 编写 Nuxt 前台 Dockerfile（基于 Node 镜像，pnpm build）
-- [ ] 16.3 编写 Admin 前台 Dockerfile（基于 Node 构建 + Nginx serve 静态文件）
+- [x] 16.3 编写 Admin 前台 Dockerfile（基于 Node 构建 + Nginx serve 静态文件）
 - [ ] 16.4 编写 docker-compose.prod.yml（生产环境配置覆写，环境变量外置）
 - [ ] 16.5 配置 GitHub Actions CI workflow（Build + Test，针对 feature/develop/main 分支）
 - [ ] 16.6 配置 GitHub Actions Deploy workflow（main 分支自动推送镜像到 ACR/TCR + SSH 部署）
