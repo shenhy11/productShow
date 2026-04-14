@@ -132,14 +132,14 @@
 - [x] 16.5 配置 GitHub Actions CI workflow（Build + Test，针对 feature/develop/main 分支）
 - [x] 16.6 配置 GitHub Actions Deploy workflow（main 分支自动推送镜像到 ACR/TCR + SSH 部署）
 - [x] 16.7 配置 Nginx SSL 证书（Let's Encrypt 或云厂商免费证书）
-- [ ] 16.8 端到端部署验证：全流程从代码推送到生产环境可访问
+- [x] 16.8 端到端部署验证：全流程从代码推送到生产环境可访问
 
 ## 17. 测试与上线
 
-- [ ] 17.1 后端各模块 API 接口测试（可使用 Postman/IDEA HTTP Client）
-- [ ] 17.2 前台各页面功能验证（SSG 页面加载、ISR 缓存刷新、SSR 列表分页）
-- [ ] 17.3 Admin 后台各管理页面 CRUD 操作验证
-- [ ] 17.4 多语言切换功能验证（前台中英文切换、API lang 参数）
-- [ ] 17.5 响应式布局验证（桌面、平板、手机三种设备）
-- [ ] 17.6 SEO 验证（Google Search Console 提交 sitemap、检查 SSR 页面源码）
-- [ ] 17.7 DNS 切换至新站，保留旧站 1 个月用于紧急回退
+- [x] 17.1 后端各模块 API 接口测试（可使用 Postman/IDEA HTTP Client）
+- [x] 17.2 前台各页面功能验证（SSG 页面加载、ISR 缓存刷新、SSR 列表分页）
+- [x] 17.3 Admin 后台各管理页面 CRUD 操作验证
+- [x] 17.4 多语言切换功能验证（前台中英文切换、API lang 参数）
+- [x] 17.5 响应式布局验证（桌面、平板、手机三种设备）
+- [x] 17.6 SEO 验证（Google Search Console 提交 sitemap、检查 SSR 页面源码）
+- [x] 17.7 DNS 切换至新站，保留旧站 1 个月用于紧急回退
