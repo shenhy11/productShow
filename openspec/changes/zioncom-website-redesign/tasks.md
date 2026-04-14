@@ -114,7 +114,7 @@
 - [x] 14.2 实现 FAQ 页面（/support/faq）：分类分组 + 折叠/展开问答
 - [x] 14.3 实现 Web 模拟器列表页（/support/web-emulators）
 - [x] 14.4 实现技术视频页面（/support/tech-videos）：视频卡片网格
-- [ ] 14.5 实现邮件技术支持页面（/support/email-support）：提交表单
+- [x] 14.5 实现邮件技术支持页面（/support/email-support）：提交表单
 
 ## 15. UI 设计与视觉优化
 
