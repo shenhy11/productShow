@@ -20,7 +20,7 @@ export default defineNuxtConfig({
   },
 
   css: [
-    '@/assets/css/main.css'
+    '~/assets/css/main.css'
   ],
 
   // 配置 SSG/ISR/SSR 混合渲染策略
