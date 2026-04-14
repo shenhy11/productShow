@@ -3,6 +3,21 @@ export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
 
+  app: {
+    head: {
+      titleTemplate: '%s - Zioncom',
+      title: 'Zioncom Electronics',
+      meta: [
+        { charset: 'utf-8' },
+        { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+        { hid: 'description', name: 'description', content: 'Zioncom is a global manufacturer of network communication products, specializing in Wi-Fi routers, adapters, and switches.' },
+        { property: 'og:title', content: 'Zioncom Electronics' },
+        { property: 'og:description', content: 'Zioncom is a global manufacturer of network communication products.' },
+        { property: 'og:type', content: 'website' }
+      ]
+    }
+  },
+
   // 配置 SSG/ISR/SSR 混合渲染策略
   routeRules: {
     '/': { isr: 3600 },             // 首页缓存 1 小时
