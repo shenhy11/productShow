@@ -1,0 +1,15 @@
+{
+  "nav": {
+    "home": "首页",
+    "products": "产品中心",
+    "support": "技术支持",
+    "news": "新闻动态",
+    "about": "关于我们"
+  },
+  "common": {
+    "search": "搜索",
+    "viewMore": "查看更多",
+    "language": "语言",
+    "copyright": "© 2026 吉翁电子（深圳）有限公司 版权所有"
+  }
+}

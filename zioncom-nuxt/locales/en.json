@@ -1,0 +1,15 @@
+{
+  "nav": {
+    "home": "Home",
+    "products": "Products",
+    "support": "Support",
+    "news": "News",
+    "about": "About Us"
+  },
+  "common": {
+    "search": "Search",
+    "viewMore": "View More",
+    "language": "Language",
+    "copyright": "© 2026 Zioncom Electronics (Shenzhen) Co., Ltd. All Rights Reserved."
+  }
+}

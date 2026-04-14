@@ -10,5 +10,25 @@ export default defineNuxtConfig({
     '/news/**': { isr: 1800 },      // 新闻页缓存 30 分钟
     '/support/**': { ssr: true },   // 技术支持页面动态渲染 SSR
     '/api/**': { proxy: 'http://zioncom-server:8080/api/**' } // API 代理转发到 Spring Boot
+  },
+
+  modules: [
+    '@nuxtjs/i18n'
+  ],
+
+  i18n: {
+    locales: [
+      { code: 'en', iso: 'en-US', file: 'en.json', name: 'English' },
+      { code: 'zh', iso: 'zh-CN', file: 'zh.json', name: '简体中文' }
+    ],
+    lazy: true,
+    langDir: 'locales/',
+    defaultLocale: 'en',
+    strategy: 'prefix_except_default',
+    detectBrowserLanguage: {
+      useCookie: true,
+      cookieKey: 'i18n_redirected',
+      redirectOn: 'root', 
+    }
   }
 })
