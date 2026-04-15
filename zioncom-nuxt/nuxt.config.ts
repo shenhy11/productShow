@@ -5,7 +5,7 @@ export default defineNuxtConfig({
   typescript: { typeCheck: false },
 
   app: {
-    pageTransition: { name: 'page', mode: 'out-in' },
+    // pageTransition: { name: 'page', mode: 'out-in' }, // 移除全局过渡动画，解决路由冻结 bug
     head: {
       titleTemplate: '%s - Zioncom',
       title: 'Zioncom Electronics',
