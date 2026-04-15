@@ -37,6 +37,7 @@
 </template>
 
 <script setup>
+const localePath = useLocalePath()
 useHead({ title: 'About Us' })
 </script>
 
