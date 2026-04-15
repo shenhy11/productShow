@@ -1,5 +1,5 @@
 # 第一阶段：构建前端资源和打包依赖
-FROM maven:3.8.6-eclipse-temurin-8-alpine AS build
+FROM maven:3.8.6-eclipse-temurin-17-alpine AS build
 WORKDIR /app
 COPY pom.xml .
 COPY ruoyi-admin/pom.xml ruoyi-admin/
@@ -21,7 +21,7 @@ COPY . .
 RUN mvn -s maven-settings.xml clean package -DskipTests
 
 # 第二阶段：运行阶段
-FROM eclipse-temurin:8-jre-alpine
+FROM eclipse-temurin:17-jre-alpine
 WORKDIR /app
 COPY --from=build /app/ruoyi-admin/target/ruoyi-admin.jar app.jar
 EXPOSE 8080
