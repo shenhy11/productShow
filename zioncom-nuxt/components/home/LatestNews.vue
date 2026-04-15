@@ -7,20 +7,27 @@
     
     <div v-if="pending" class="loading">Loading...</div>
     <div v-else class="news-grid">
-      <div class="news-card" v-for="news in newsList" :key="news.id">
+      <!-- 整个卡片作为 NuxtLink，点击任意位置都能跳转 -->
+      <NuxtLink
+        class="news-card"
+        v-for="news in newsList"
+        :key="news.id"
+        :to="localePath(`/news/${news.id}`)"
+      >
         <div class="news-img" :style="{ backgroundImage: `url(${news.coverImage || 'https://picsum.photos/400/200?random=' + news.id})` }"></div>
         <div class="news-info">
           <span class="news-date">{{ formatDate(news.publishDate) }}</span>
-          <h4 class="news-title">{{ news.titleZh }}</h4>
-          <NuxtLink :to="localePath(`/news/${news.id}`)" class="read-more">Read More &rarr;</NuxtLink>
+          <h4 class="news-title">{{ locale === 'zh' ? news.titleZh : news.titleEn }}</h4>
+          <span class="read-more">Read More &rarr;</span>
         </div>
-      </div>
+      </NuxtLink>
     </div>
   </div>
 </template>
 
 <script setup>
 const localePath = useLocalePath()
+const { locale } = useI18n()
 const { request } = useHttp()
 
 // 请求最新新闻接口 (实际部署时使用正式接口)
@@ -75,6 +82,9 @@ function formatDate(dateStr) {
   gap: 30px;
 }
 .news-card {
+  display: block;
+  text-decoration: none;
+  color: inherit;
   border: 1px solid #eaeaea;
   border-radius: 8px;
   overflow: hidden;

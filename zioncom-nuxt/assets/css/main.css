@@ -1,56 +1,178 @@
 /* ========================================================================= 
-   全局响应式断点与 CSS 变量
-   设计原则：Mobile First 优先，逐步增加大屏断点
-   - Breakpoint 1: 屏幕 < 768px (手机端 Mobile)
-   - Breakpoint 2: 768px <= 屏幕 < 1024px (平板端 Tablet)
-   - Breakpoint 3: 屏幕 >= 1024px (桌面端 Desktop)
+   Global Premium Design System - ZIONCOM
+   设计原则：高级科技风、清透冰霜毛玻璃、深蓝渐变色板、微妙动作响应
 ========================================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600&display=swap');
 
 :root {
-  /* 品牌色 */
-  --color-primary: #0056b3;
-  --color-secondary: #003d82;
+  /* 品牌色板 (Tech Blue Palette) */
+  --color-primary: #0F52BA;        /* 蓝宝石深蓝 */
+  --color-primary-light: #2563EB;  /* 亮空蓝 */
+  --color-primary-dark: #002244;   /* 午夜蓝 */
+  --color-accent: #00F0FF;         /* 赛博青（微光色） */
   
-  /* 文本色 */
-  --color-text-main: #333333;
-  --color-text-muted: #666666;
+  /* 基础背景色 */
+  --color-bg-base: #F8FAFC;        /* 万物灰白 */
+  --color-surface: #FFFFFF;        /* 纯白 */
   
-  /* 容器最大宽度限制 */
-  --container-max-width: 1200px;
+  /* 文本色调 */
+  --color-text-main: #0B1120;      /* 极黑色（正文） */
+  --color-text-muted: #64748B;     /* 次要灰 */
+  
+  /* 玻璃效果 */
+  --glass-bg: rgba(255, 255, 255, 0.7);
+  --glass-border: rgba(255, 255, 255, 0.4);
+  --glass-shadow: 0 8px 32px 0 rgba(15, 82, 186, 0.08);
+
+  /* 阴影与圆角体系 */
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-full: 9999px;
+  
+  --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 10px 15px -3px rgba(0, 34, 68, 0.08); /* 微微带点品牌蓝的投影 */
+  --shadow-hover: 0 20px 25px -5px rgba(15, 82, 186, 0.15), 0 8px 10px -6px rgba(15, 82, 186, 0.08);
+  
+  --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  --container-max-width: 1280px;
+}
+
+/* =======================================================
+   Base / 基础重置
+====================================================== */
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', Arial, sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
   color: var(--color-text-main);
+  background-color: var(--color-bg-base);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* 所有的标题使用更现代的 Outfit 字体 */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-top: 0;
+  color: var(--color-primary-dark);
+}
+
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: var(--transition-smooth);
+}
+
+a:hover {
+  color: var(--color-accent);
 }
 
 .container {
   width: 100%;
   max-width: var(--container-max-width);
   margin: 0 auto;
-  padding: 0 15px;
+  padding: 0 24px;
   box-sizing: border-box;
 }
 
 /* =======================================================
-   Mobile First (默认针对移动端样式，适用于 0 - 767px)
-======================================================= */
-/* 
-针对移动端的排版和列数，可以在此编写默认 CSS，如 1列、缩小内边距等 
-*/
+   Premium Components
+====================================================== */
 
-/* =======================================================
-   Tablet 适配 (768px 及以上)
-======================================================= */
-@media screen and (min-width: 768px) {
-  /* 平板端的特定调整 */
+/* 渐变流光文字 */
+.gradient-text {
+  background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
 }
 
-/* =======================================================
-   Desktop 适配 (1024px 及以上)
-======================================================= */
-@media screen and (min-width: 1024px) {
-  /* 桌面端的特定调整 */
+/* 高级品牌主按钮 */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 32px;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 600;
+  font-size: 1.05rem;
+  color: #fff !important;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light));
+  border: none;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(15, 82, 186, 0.3);
+  transition: var(--transition-smooth);
+  position: relative;
+  overflow: hidden;
+}
+
+/* 按钮微光扫过效果 */
+.btn-primary::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0) 100%);
+  transform: skewX(-20deg);
+  transition: none;
+}
+
+.btn-primary:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 15px 25px rgba(15, 82, 186, 0.4);
+}
+
+.btn-primary:hover::after {
+  left: 200%;
+  transition: all 0.8s ease-in-out;
+}
+
+/* 精致边框次级按钮 */
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 28px;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 600;
+  color: var(--color-primary);
+  background: transparent;
+  border: 2px solid var(--color-primary-light);
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+
+.btn-outline:hover {
+  background: var(--color-primary-light);
+  color: #fff !important;
+  box-shadow: 0 8px 15px rgba(37, 99, 235, 0.2);
+  transform: translateY(-2px);
+}
+
+/* 统一定义卡片毛玻璃基建 */
+.glass-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--glass-shadow);
+  transition: var(--transition-smooth);
+}
+
+.glass-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-hover);
+  border-color: rgba(255, 255, 255, 0.8);
 }
