@@ -17,13 +17,24 @@ export const useHttp = () => {
     }
 
     // 深度合并 fetch 配置
-    const finalOptions = {
+    const finalOptions: any = {
       ...defaults,
       ...options,
       query: {
         ...defaults.query,
         ...(options.query || {})
       }
+    }
+
+    // 修复 Nuxt 3 中封装 useFetch 导致的自动分配全局相同 key 的问题
+    // 手动基于 url 和带有语言的参数生成独立的 key
+    if (!finalOptions.key) {
+      finalOptions.key = `${url}-${JSON.stringify(finalOptions.query)}`
+    }
+    
+    // 添加侦听，当语言环境变化时主动重新请求
+    if (!finalOptions.watch) {
+      finalOptions.watch = [ $i18n.locale ]
     }
 
     return useFetch(url, finalOptions)
