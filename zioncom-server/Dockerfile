@@ -18,7 +18,7 @@ COPY maven-settings.xml .
 # 拷贝所有源码
 COPY . .
 # 打包所有模块，使用阿里云加速源
-RUN mvn -s maven-settings.xml clean package -DskipTests
+RUN mvn -s maven-settings.xml clean package -Dmaven.test.skip=true
 
 # 第二阶段：运行阶段
 FROM eclipse-temurin:17-jre-alpine
