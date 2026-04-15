@@ -31,7 +31,8 @@ const { locale } = useI18n()
 const { request } = useHttp()
 
 // 请求最新新闻接口 (实际部署时使用正式接口)
-const { data, pending } = await request('/api/content/article/list', {
+const { data, pending } = request('/api/content/article/list', {
+  lazy: true,
   query: { pageSize: 3, status: 'published' }
 })
 

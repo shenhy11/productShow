@@ -34,7 +34,8 @@
 const { locale } = useI18n()
 const { request } = useHttp()
 
-const { data, pending } = await request('/api/support/techVideo/list', {
+const { data, pending } = request('/api/support/techVideo/list', {
+  lazy: true,
   query: { status: 'published' }
 })
 

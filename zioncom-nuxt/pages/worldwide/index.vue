@@ -27,7 +27,8 @@
 <script setup>
 const { request } = useHttp()
 
-const { data, pending } = await request('/api/brand/partner/list', {
+const { data, pending } = request('/api/brand/partner/list', {
+  lazy: true,
   query: { status: 'published' }
 })
 

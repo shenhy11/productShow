@@ -26,7 +26,8 @@
 const { locale } = useI18n()
 const { request } = useHttp()
 
-const { data, pending } = await request('/api/support/webEmulator/list', {
+const { data, pending } = request('/api/support/webEmulator/list', {
+  lazy: true,
   query: { status: 'published' }
 })
 

@@ -27,7 +27,8 @@ const localePath = useLocalePath()
 const { request } = useHttp()
 
 // 查询分类接口 (默认展示前8个热门分类)
-const { data, pending } = await request('/api/product/category/list', {
+const { data, pending } = request('/api/product/category/list', {
+  lazy: true,
   query: { pageSize: 8 }
 })
 

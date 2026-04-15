@@ -30,7 +30,7 @@ export default defineNuxtConfig({
     '/products/**': { isr: 3600 },  // 产品页缓存 1 小时
     '/news/**': { isr: 1800 },      // 新闻页缓存 30 分钟
     '/support/**': { ssr: true },   // 技术支持页面动态渲染 SSR
-    '/api/**': { proxy: 'http://spring-api:8080/api/**' } // API 代理转发到 Spring Boot
+    '/api/**': { proxy: process.env.NUXT_PUBLIC_API_BASE ? `${process.env.NUXT_PUBLIC_API_BASE}/api/**` : 'http://127.0.0.1:8080/api/**' } // API 代理转发到 Spring Boot
   },
 
   modules: [

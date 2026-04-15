@@ -26,7 +26,7 @@ const { locale } = useI18n()
 const { request } = useHttp()
 const articleId = route.params.id
 
-const { data: res, pending } = await request(`/api/content/article/${articleId}`)
+const { data: res, pending } = request(`/api/content/article/${articleId}`, { lazy: true })
 
 const article = computed(() => {
   if (res.value?.data) return res.value.data

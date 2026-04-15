@@ -52,14 +52,15 @@ const searchKeyword = computed(() => route.query.keyword || '')
 const selectedCategory = computed(() => route.query.category ? Number(route.query.category) : null)
 
 // 获取分类
-const { data: catData } = await request('/api/product/category/list')
+const { data: catData } = request('/api/product/category/list', { lazy: true })
 const categories = computed(() => catData.value?.data || [
   { id: 1, nameZh: '无线路由器', nameEn: 'Wireless Router' },
   { id: 2, nameZh: '无线适配器', nameEn: 'Wireless Adapter' }
 ])
 
 // 获取产品列表
-const { data: prodData, pending, refresh } = await request('/api/product/product/list', {
+const { data: prodData, pending, refresh } = request('/api/product/product/list', {
+  lazy: true,
   query: { 
     keyword: searchKeyword,
     categoryId: selectedCategory,

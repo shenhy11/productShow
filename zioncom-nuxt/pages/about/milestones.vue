@@ -23,7 +23,8 @@
 const { locale } = useI18n()
 const { request } = useHttp()
 
-const { data, pending } = await request('/api/brand/milestone/list', {
+const { data, pending } = request('/api/brand/milestone/list', {
+  lazy: true,
   query: { orderByColumn: 'year', isAsc: 'desc', status: 'published' }
 })
 

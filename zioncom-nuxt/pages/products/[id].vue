@@ -74,27 +74,27 @@ const productId = route.params.id
 
 const activeTab = ref('overview')
 
-const { data: prodRes, pending } = await request(`/api/product/product/${productId}`)
+const { data: prodRes, pending } = request(`/api/product/product/${productId}`, { lazy: true })
 const product = computed(() => {
   if (prodRes.value?.data) return prodRes.value.data
   return { id: productId, model: 'WR1200', nameZh: '千兆双频路由', nameEn: 'AC1200 Router', summaryZh: '1200M', detailZh: '<p>Overview</p>' }
 })
 
 // Specs 列表接口（由于这里生成的是标准CRUD，故手动调list接口带productId参数）
-const { data: specRes } = await request('/api/product/spec/list', { query: { productId } })
+const { data: specRes } = request('/api/product/spec/list', { lazy: true, query: { productId } })
 const specs = computed(() => specRes.value?.rows || [
   { specKey: 'Standards', specValue: 'IEEE 802.11ac, IEEE 802.11n, IEEE 802.11g, IEEE 802.11b, IEEE 802.11a' },
   { specKey: 'Ports', specValue: '4*1000Mbps LAN Ports, 1*1000Mbps WAN Port' }
 ])
 
 // 固件接口
-const { data: fwRes } = await request('/api/support/firmware/list', { query: { productId } })
+const { data: fwRes } = request('/api/support/firmware/list', { lazy: true, query: { productId } })
 const firmwares = computed(() => fwRes.value?.rows || [
   { id: 1, version: 'v1.0.2', releaseDate: '2026-01-10', fileUrl: '#' }
 ])
 
 // 文档接口
-const { data: docRes } = await request('/api/support/document/list', { query: { productId } })
+const { data: docRes } = request('/api/support/document/list', { lazy: true, query: { productId } })
 const documents = computed(() => docRes.value?.rows || [
   { id: 1, titleZh: '快速安装指南', titleEn: 'Quick Installation Guide', fileUrl: '#' }
 ])

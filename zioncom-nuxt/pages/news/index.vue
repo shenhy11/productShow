@@ -16,7 +16,8 @@
 <script setup>
 const { request } = useHttp()
 
-const { data, pending } = await request('/api/content/article/list', {
+const { data, pending } = request('/api/content/article/list', {
+  lazy: true,
   query: { type: 'news', status: 'published' }
 })
 
