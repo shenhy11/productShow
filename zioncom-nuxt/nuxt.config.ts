@@ -24,13 +24,14 @@ export default defineNuxtConfig({
     '~/assets/css/main.css'
   ],
 
-  // 配置 SSG/ISR/SSR 混合渲染策略
+  // 渲染策略：移除 ISR 避免首次渲染失败被缓存（ISR cache poison），产品/新闻/支持页改为 CSR
   routeRules: {
-    '/': { isr: 3600 },             // 首页缓存 1 小时
-    '/products/**': { isr: 3600 },  // 产品页缓存 1 小时
-    '/news/**': { isr: 1800 },      // 新闻页缓存 30 分钟
-    '/support/**': { ssr: true },   // 技术支持页面动态渲染 SSR
-    '/api/**': { proxy: process.env.NUXT_PUBLIC_API_BASE ? `${process.env.NUXT_PUBLIC_API_BASE}/api/**` : 'http://127.0.0.1:8080/api/**' } // API 代理转发到 Spring Boot
+    '/products/**': { ssr: false },
+    '/news/**':     { ssr: false },
+    '/support/**':  { ssr: false },
+    // API 代理：硬编码 spring-api:8080（Docker 内部服务名）
+    // nuxt.config.ts 在 Build Time 运行，process.env 此时不可靠，不能用环境变量
+    '/api/**': { proxy: 'http://spring-api:8080/' }
   },
 
   modules: [
