@@ -62,8 +62,8 @@ const categories = computed(() => catData.value?.data || [
 const { data: prodData, pending, refresh } = request('/api/product/product/list', {
   lazy: true,
   query: { 
-    keyword: searchKeyword,
-    categoryId: selectedCategory,
+    keyword: searchKeyword.value,
+    categoryId: selectedCategory.value,
     status: 'published'
   }
 })

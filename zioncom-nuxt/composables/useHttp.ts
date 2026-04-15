@@ -1,8 +1,8 @@
-import { useNuxtApp, useRuntimeConfig } from '#app'
+import { useNuxtApp } from '#app'
+import { isRef, unref } from 'vue'
 
 export const useHttp = () => {
   const { $i18n } = useNuxtApp()
-  const config = useRuntimeConfig()
 
   /**
    * 封装的请求函数，自动附加当前的 lang 参数
@@ -26,15 +26,19 @@ export const useHttp = () => {
       }
     }
 
-    // 修复 Nuxt 3 中封装 useFetch 导致的自动分配全局相同 key 的问题
-    // 手动基于 url 和带有语言的参数生成独立的 key
+    // 生成唯一 key 避免 Nuxt 共享全局相同的 useFetch key。
+    // 注：绝对不能用 JSON.stringify 序列化 finalOptions.query，
+    // 因为这会引发 ComputedRef 渲染时的循环引用（Circular structure to JSON）死机！
     if (!finalOptions.key) {
-      finalOptions.key = `${url}-${JSON.stringify(finalOptions.query)}`
+      const qs = Object.entries(finalOptions.query || {})
+        .map(([k, v]) => `${k}=${String(isRef(v) ? unref(v) : v)}`)
+        .join('&')
+      finalOptions.key = `${url}?${qs}`
     }
-    
-    // 添加侦听，当语言环境变化时主动重新请求
+
+    // 添加侦听：当语言环境或 query 中的响应式依赖变化时主动重新请求
     if (!finalOptions.watch) {
-      finalOptions.watch = [ $i18n.locale ]
+      finalOptions.watch = [$i18n.locale]
     }
 
     return useFetch(url, finalOptions)
