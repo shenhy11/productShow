@@ -1,0 +1,89 @@
+{
+  "code": 200,
+  "msg": "success",
+  "total": 8,
+  "data": {
+    "rows": [
+      {
+        "id": 101,
+        "categoryId": "1",
+        "model": "AX3000",
+        "nameZh": "WiFi 6 千兆极速路由器",
+        "nameEn": "AX3000 Wi-Fi 6 Router",
+        "summaryZh": "双频无线，最高达3000Mbps，专为电竞与4K串流打造。",
+        "summaryEn": "Dual-Band Wi-Fi 6 up to 3000Mbps, forged for 4K streaming and gaming.",
+        "image": "https://picsum.photos/400/300?random=101"
+      },
+      {
+        "id": 102,
+        "categoryId": "1",
+        "model": "AC1200",
+        "nameZh": "AC1200 全千兆双频路由器",
+        "nameEn": "AC1200 Dual-Band Router",
+        "summaryZh": "稳定并发双频，覆盖全户。",
+        "summaryEn": "Stable dual-band connection for the whole house.",
+        "image": "https://picsum.photos/400/300?random=102"
+      },
+      {
+        "id": 103,
+        "categoryId": "1",
+        "model": "WR1200",
+        "nameZh": "千兆基础型路由器",
+        "nameEn": "WR1200 Smart WiFi Router",
+        "summaryZh": "基础入门款首选，配置简易，超宽带体验。",
+        "summaryEn": "Best entry-level router, easy configuration.",
+        "image": "https://picsum.photos/400/300?random=103"
+      },
+      {
+        "id": 201,
+        "categoryId": "2",
+        "model": "X6100UA",
+        "nameZh": "WiFi 6 无线适配器 (USB)",
+        "nameEn": "X6100UA Wi-Fi 6 Adapter",
+        "summaryZh": "超迷你形态，插入即让PC疾速连接 WiFi 6 频段。",
+        "summaryEn": "Nano-size USB adapter to upgrade any PC to Wi-Fi 6.",
+        "image": "https://picsum.photos/400/300?random=201"
+      },
+      {
+        "id": 202,
+        "categoryId": "2",
+        "model": "A600UB",
+        "nameZh": "双频极速蓝牙无线网卡",
+        "nameEn": "A600UB Wi-Fi & Bluetooth Adapter",
+        "summaryZh": "一卡多用，同时支持 WiFi 收发及蓝牙 5.0。",
+        "summaryEn": "All in one Wi-Fi and Bluetooth 5.0 USB Adapter.",
+        "image": "https://picsum.photos/400/300?random=202"
+      },
+      {
+        "id": 301,
+        "categoryId": "3",
+        "model": "EX1200T",
+        "nameZh": "AC1200 智能信号中继器",
+        "nameEn": "EX1200T Range Extender",
+        "summaryZh": "拓展死角信号，智能漫游，无缝增强网络。",
+        "summaryEn": "Eliminate Wi-Fi dead zones with seamless roaming.",
+        "image": "https://picsum.photos/400/300?random=301"
+      },
+      {
+        "id": 302,
+        "categoryId": "3",
+        "model": "EX200",
+        "nameZh": "300Mbps 无线增强器",
+        "nameEn": "EX200 Wi-Fi Range Extender",
+        "summaryZh": "单天线设计，适用公寓小面积增强。",
+        "summaryEn": "Simple antenna design for apartment extension.",
+        "image": "https://picsum.photos/400/300?random=302"
+      },
+      {
+        "id": 401,
+        "categoryId": "4",
+        "model": "NR3000",
+        "nameZh": "4G/5G CPE 工业级路由",
+        "nameEn": "NR3000 5G CPE Router",
+        "summaryZh": "免拉宽带，插卡即用畅享 5G 满速网络。",
+        "summaryEn": "Plug-and-play 5G CPE, no broadband wiring required.",
+        "image": "https://picsum.photos/400/300?random=401"
+      }
+    ]
+  }
+}

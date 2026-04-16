@@ -1,6 +1,6 @@
 <template>
   <NuxtLink :to="localePath(`/products/${product.id}`)" class="product-card">
-    <div class="product-img" :style="{ backgroundImage: `url(${product.coverImage || 'https://picsum.photos/300/300?random=' + product.id})` }"></div>
+    <div class="product-img" :style="{ backgroundImage: `url(${product.image || product.coverImage || 'https://picsum.photos/300/300?random=' + product.id})` }"></div>
     <div class="product-info">
       <div class="product-model">{{ product.model }}</div>
       <h3 class="product-name">{{ locale === 'zh' ? product.nameZh : product.nameEn }}</h3>

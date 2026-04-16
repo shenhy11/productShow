@@ -37,6 +37,6 @@
 
 ## 7. 产品字典及丰富化目录 (Product Detail Explosion)
 
-- [ ] 7.1 改造当前极为单薄的 `mock/categories.json` / `mock/products.json` 引流模式，人工根据抓取的 `crawl_results.json` 伪造一组至少有 5~8 个产品的高保真 JSON 数据。
-- [ ] 7.2 修缮 `pages/products/index.vue` 产品中心的网格列表排列，让它真正读取刚才拓展后的列表长度并以密集的组件式铺展开来。
-- [ ] 7.3 验证详情页内挂载这些更丰富数据的连通性。
+- [x] 7.1 改造当前极为单薄的 `mock/categories.json` / `mock/products.json` 引流模式，人工根据抓取的 `crawl_results.json` 伪造一组至少有 5~8 个产品的高保真 JSON 数据。
+- [x] 7.2 修缮 `pages/products/index.vue` 产品中心的网格列表排列，让它真正读取刚才拓展后的列表长度并以密集的组件式铺展开来。
+- [x] 7.3 验证详情页内挂载这些更丰富数据的连通性。

@@ -55,27 +55,31 @@ const selectedCategory = computed(() => route.query.category ? String(route.quer
 const { data: catData } = useFetch<Array<{id: string, name: string, icon: string}>>('/mock/categories.json', { lazy: true })
 const categories = computed(() => catData.value || [])
 
-// 获取产品列表
-const { data: prodData, pending, refresh } = request('/api/product/product/list', {
-  lazy: true,
-  query: { 
-    keyword: searchKeyword.value,
-    categoryId: selectedCategory.value,
-    status: 'published'
-  }
-})
+// 获取静态产品列表来进行模拟
+const { data: allProdData, pending } = useFetch('/mock/products.json', { lazy: true })
 
 const products = computed(() => {
-  if (prodData.value?.rows) return prodData.value.rows
-  // Mock data fallback dependent on category selection
-  const prefix = selectedCategory.value ? `[${selectedCategory.value}] ` : ''
-  return [
-    { id: 101, model: 'WR1200', nameZh: `${prefix}千兆双频无线路由器`, nameEn: `${prefix}AC1200 Dual-Band Router`, summaryZh: '1200Mbps 高速网络', summaryEn: '1200Mbps High Speed' },
-    { id: 102, model: 'AX3000', nameZh: `${prefix}Wi-Fi 6 无线路由器`, nameEn: `${prefix}Wi-Fi 6 Router`, summaryZh: '最新一代Wi-Fi标准', summaryEn: 'Next-gen Wi-Fi 6 standard' },
-    { id: 103, model: 'A3000RU', nameZh: `${prefix}AC1200 千兆智能路由`, nameEn: `${prefix}AC1200 Smart Router`, summaryZh: '支持 MU-MIMO', summaryEn: 'Supports MU-MIMO technology' }
-  ]
+  if (!allProdData.value || !allProdData.value.data) return []
+  
+  let list = allProdData.value.data.rows
+  
+  if (selectedCategory.value) {
+    list = list.filter(p => p.categoryId === selectedCategory.value)
+  }
+  
+  if (searchKeyword.value) {
+    const kw = searchKeyword.value.toLowerCase()
+    list = list.filter(p => 
+      p.model.toLowerCase().includes(kw) || 
+      p.nameZh.toLowerCase().includes(kw) || 
+      p.nameEn.toLowerCase().includes(kw)
+    )
+  }
+  
+  return list
 })
-const total = computed(() => prodData.value?.total || 0)
+
+const total = computed(() => products.value.length)
 
 function handleSearch() {
   const query = { ...route.query }
@@ -97,9 +101,7 @@ function setCategory(id) {
   router.push({ query })
 }
 
-watch(() => route.query, () => {
-  refresh()
-}, { deep: true })
+// Auto reactivity through computed props removes the need for explicit watch refresh of useFetch in this mock scenario
 
 useHead({ title: 'Products' })
 </script>
