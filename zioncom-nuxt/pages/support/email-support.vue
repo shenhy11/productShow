@@ -34,27 +34,60 @@
           {{ submitting ? 'Submitting...' : 'Submit Request' }}
         </button>
         
-        <div v-if="successMsg" class="success-msg">{{ successMsg }}</div>
+        <div v-if="errorMsg" class="error-msg mt-4">{{ errorMsg }}</div>
+        <div v-if="successMsg" class="success-msg mt-4">{{ successMsg }}</div>
       </form>
     </div>
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
+import { reactive, ref } from 'vue'
+
+// @ts-ignore
 const { request } = useHttp()
 
 const form = reactive({
   name: '',
   email: '',
   productModel: '',
-  message: '' // 后端 supportRequest 存的内容字段，如果后端只叫 status，可以存在 db 中对应支持请求表的 description 等字段中。根据 2.4 SQL 我们可能需要扩展这部分。
-             // （模拟提交，前端保证字段匹配）
+  message: ''
 })
 
 const submitting = ref(false)
 const successMsg = ref('')
+const errorMsg = ref('')
+
+const validateForm = (): boolean => {
+  errorMsg.value = ''
+  
+  if (!form.name.trim()) {
+    errorMsg.value = 'Name cannot be empty.'
+    return false
+  }
+  
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+  if (!form.email.trim() || !emailRegex.test(form.email)) {
+    errorMsg.value = 'Please enter a valid email address.'
+    return false
+  }
+  
+  if (!form.productModel.trim()) {
+    errorMsg.value = 'Product Model is required.'
+    return false
+  }
+  
+  if (!form.message.trim() || form.message.length < 10) {
+    errorMsg.value = 'Message must be at least 10 characters long.'
+    return false
+  }
+  
+  return true
+}
 
 async function submitForm() {
+  if (!validateForm()) return
+  
   submitting.value = true
   successMsg.value = ''
   
@@ -70,12 +103,13 @@ async function submitForm() {
     form.productModel = ''
     form.message = ''
   } catch (error) {
-    alert('Failed to submit. Please try again.')
+    errorMsg.value = 'Failed to submit the server request. Please try again later.'
   } finally {
     submitting.value = false
   }
 }
 
+// @ts-ignore
 useHead({ title: 'Email Support' })
 </script>
 
@@ -152,10 +186,17 @@ useHead({ title: 'Email Support' })
   cursor: not-allowed;
 }
 .success-msg {
-  margin-top: 20px;
   padding: 15px;
   background: #d4edda;
   color: #155724;
+  border-radius: 4px;
+  text-align: center;
+}
+.error-msg {
+  padding: 15px;
+  background: #f8dbdf;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
   border-radius: 4px;
   text-align: center;
 }
