@@ -5,7 +5,7 @@
       <NuxtLink :to="localePath('/news')" class="view-all">{{ $t('common.viewMore') }}</NuxtLink>
     </div>
     
-    <div v-if="pending" class="loading">Loading...</div>
+    <div v-if="pending" class="loading">{{ $t('common.loading') }}</div>
     <div v-else class="news-grid">
       <!-- 整个卡片作为 NuxtLink，点击任意位置都能跳转 -->
       <NuxtLink
@@ -18,7 +18,7 @@
         <div class="news-info">
           <span class="news-date">{{ formatDate(news.publishDate) }}</span>
           <h4 class="news-title">{{ locale === 'zh' ? news.titleZh : news.titleEn }}</h4>
-          <span class="read-more">Read More &rarr;</span>
+          <span class="read-more">{{ $t('home.readMore') }} &rarr;</span>
         </div>
       </NuxtLink>
     </div>

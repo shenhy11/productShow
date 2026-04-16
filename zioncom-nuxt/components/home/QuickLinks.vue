@@ -1,18 +1,18 @@
 <template>
   <div class="quick-links container">
     <div class="link-card search-card">
-      <h3>Looking for a Product?</h3>
-      <p>Search by model or category</p>
+      <h3>{{ $t('home.lookingForProductTitle') }}</h3>
+      <p>{{ $t('home.lookingForProductDesc') }}</p>
       <div class="search-box">
-        <input type="text" placeholder="e.g. WR1200" v-model="keyword" @keyup.enter="handleSearch" />
-        <button @click="handleSearch">Search</button>
+        <input type="text" :placeholder="$t('home.searchPlaceholder')" v-model="keyword" @keyup.enter="handleSearch" />
+        <button @click="handleSearch">{{ $t('common.search') }}</button>
       </div>
     </div>
     
     <div class="link-card oem-card">
-      <h3>OEM/ODM Service</h3>
-      <p>Partner with us to create value</p>
-      <NuxtLink :to="localePath('/about')" class="btn-outline">Learn More</NuxtLink>
+      <h3>{{ $t('home.oemServiceTitle') }}</h3>
+      <p>{{ $t('home.oemServiceDesc') }}</p>
+      <NuxtLink :to="localePath('/about')" class="btn-outline">{{ $t('home.learnMore') }}</NuxtLink>
     </div>
   </div>
 </template>

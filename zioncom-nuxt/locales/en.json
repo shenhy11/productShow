@@ -10,9 +10,29 @@
     "search": "Search",
     "viewMore": "View More",
     "language": "Language",
-    "copyright": "© 2026 Zioncom Electronics (Shenzhen) Co., Ltd. All Rights Reserved."
+    "copyright": "© 2026 Zioncom Electronics (Shenzhen) Co., Ltd. All Rights Reserved.",
+    "loading": "Loading..."
+  },
+  "home": {
+    "heroTitle": "Welcome to Zioncom",
+    "exploreProducts": "Explore Products",
+    "learnMore": "Learn More",
+    "lookingForProductTitle": "Looking for a Product?",
+    "lookingForProductDesc": "Search by model or category",
+    "searchPlaceholder": "e.g. WR1200",
+    "oemServiceTitle": "OEM/ODM Service",
+    "oemServiceDesc": "Partner with us to create value",
+    "readMore": "Read More"
   },
   "footer": {
     "slogan": "Your Trusted Partner in Network Communication Solutions."
+  },
+  "product": {
+    "searchResultsFor": "Search Results for \"{keyword}\"",
+    "categories": "Categories",
+    "allProducts": "All Products",
+    "loadingProducts": "Loading products...",
+    "noProducts": "No products found.",
+    "totalItems": "Total {count} items"
   }
 }

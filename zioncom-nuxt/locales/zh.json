@@ -10,9 +10,29 @@
     "search": "搜索",
     "viewMore": "查看更多",
     "language": "语言",
-    "copyright": "© 2026 吉翁电子（深圳）有限公司 版权所有"
+    "copyright": "© 2026 吉翁电子（深圳）有限公司 版权所有",
+    "loading": "加载中..."
+  },
+  "home": {
+    "heroTitle": "欢迎访问吉翁电子",
+    "exploreProducts": "探索产品",
+    "learnMore": "了解更多",
+    "lookingForProductTitle": "在找什么产品？",
+    "lookingForProductDesc": "按型号或类别搜索",
+    "searchPlaceholder": "例如 WR1200",
+    "oemServiceTitle": "OEM/ODM 制造服务",
+    "oemServiceDesc": "携手合作，共创价值",
+    "readMore": "阅读详情"
   },
   "footer": {
     "slogan": "您在网络通讯解决方案上的得力信赖伙伴。"
+  },
+  "product": {
+    "searchResultsFor": "关于 \"{keyword}\" 的搜索结果",
+    "categories": "产品分类",
+    "allProducts": "所有产品",
+    "loadingProducts": "正在加载产品...",
+    "noProducts": "未找到相关产品。",
+    "totalItems": "共 {count} 件产品"
   }
 }

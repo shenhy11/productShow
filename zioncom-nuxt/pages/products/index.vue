@@ -1,7 +1,7 @@
 <template>
   <div class="products-page container">
     <div class="page-header">
-      <h1>{{ searchKeyword ? `Search Results for "${searchKeyword}"` : $t('nav.products') }}</h1>
+      <h1>{{ searchKeyword ? $t('product.searchResultsFor', { keyword: searchKeyword }) : $t('nav.products') }}</h1>
       <div class="search-bar">
         <input type="text" v-model="searchInput" @keyup.enter="handleSearch" :placeholder="$t('common.search')" />
         <button @click="handleSearch">{{ $t('common.search') }}</button>
@@ -10,30 +10,30 @@
     
     <div class="layout-main">
       <aside class="sidebar">
-        <h3>Categories</h3>
+        <h3>{{ $t('product.categories') }}</h3>
         <ul class="category-list">
-          <li :class="{ active: !selectedCategory }" @click="setCategory(null)">All Products</li>
+          <li :class="{ active: !selectedCategory }" @click="setCategory(null)">{{ $t('product.allProducts') }}</li>
           <li 
             v-for="cat in categories" 
             :key="cat.id" 
             :class="{ active: selectedCategory === cat.id }"
             @click="setCategory(cat.id)"
           >
-            {{ cat.name }}
+            {{ locale === 'zh' ? cat.nameZh : (cat.nameEn || cat.name) }}
           </li>
         </ul>
       </aside>
       
       <div class="product-content">
-        <div v-if="pending" class="loading">Loading products...</div>
-        <div v-else-if="products.length === 0" class="no-data">No products found.</div>
+        <div v-if="pending" class="loading">{{ $t('product.loadingProducts') }}</div>
+        <div v-else-if="products.length === 0" class="no-data">{{ $t('product.noProducts') }}</div>
         <div v-else class="product-grid">
           <ProductCard v-for="item in products" :key="item.id" :product="item" />
         </div>
         
         <!-- 分页占位 -->
         <div class="pagination" v-if="total > 0">
-           <span>Total {{ total }} items</span>
+           <span>{{ $t('product.totalItems', { count: total }) }}</span>
         </div>
       </div>
     </div>

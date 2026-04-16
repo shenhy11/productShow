@@ -5,7 +5,7 @@
       <NuxtLink :to="localePath('/products')" class="view-all">{{ $t('common.viewMore') }}</NuxtLink>
     </div>
     
-    <div v-if="pending" class="loading">Loading...</div>
+    <div v-if="pending" class="loading">{{ $t('common.loading') }}</div>
     <div v-else class="category-grid">
       <NuxtLink 
         v-for="cat in categoryList" 

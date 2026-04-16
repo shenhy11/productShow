@@ -6,11 +6,11 @@
     
     <div class="banner-slide">
       <div class="banner-content glass-card">
-        <h1 class="gradient-text">Welcome to Zioncom</h1>
-        <p>Your Trusted Partner in Network Communication Solutions.</p>
+        <h1 class="gradient-text">{{ $t('home.heroTitle') }}</h1>
+        <p>{{ $t('footer.slogan') }}</p>
         <div class="btn-group">
-          <NuxtLink :to="localePath('/products')" class="btn-primary">Explore Products</NuxtLink>
-          <NuxtLink :to="localePath('/about')" class="btn-outline">Learn More</NuxtLink>
+          <NuxtLink :to="localePath('/products')" class="btn-primary">{{ $t('home.exploreProducts') }}</NuxtLink>
+          <NuxtLink :to="localePath('/about')" class="btn-outline">{{ $t('home.learnMore') }}</NuxtLink>
         </div>
       </div>
     </div>
