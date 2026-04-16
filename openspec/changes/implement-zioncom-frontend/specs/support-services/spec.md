@@ -1,15 +1,15 @@
-## ADDED Requirements
+## 新增需求 (ADDED Requirements)
 
-### Requirement: Firmware Cascade Selector
-The download center SHALL implement a three-tier cascade (Category -> Subcategory -> Model) utilizing debounce mechanisms for API requests.
+### 需求: 固件防抖动态三阶搜索级联器 (Firmware Cascade Selector)
+在系统的中央技术支持与下载子区块内，必须引入包含至少三个级别嵌套选择器（类目 -> 子分类 -> 固件/支持型号）的自定义前端控制器结构，并为了防御恶意或极端快速重试所导致的性能瘫痪增加 API 请求级别的 Debounce（函数防抖）策略。
 
-#### Scenario: Searching for specific firmware
-- **WHEN** user selects 'Router' and then 'X6100UA'
-- **THEN** associated firmware options execute via fetch with caching and display in results table
+#### 场景: 用户欲查询某个指定的旧款设备文档 (Searching for specific firmware)
+- **当 (WHEN)** 用户通过联动的 UI 点击 '路由器' 随之最终锁定 'X6100UA' 机型时
+- **那么 (THEN)** 这个查询状态将会挂载并利用防抖计时缓冲后自动发起到后台固件中心的高效调阅并最终打印出相关列表结果表（Results Table）。
 
-### Requirement: Email Tech Form Validation
-The support form SHALL validate required fields (subject, email, message, system) before allowing submission logic to execute.
+### 需求: 在线邮件表单拦截校验 (Email Tech Form Validation)
+技术支援表单部分必须具备在向后台抛弃数据请求动作实施之前，强制预先检验其核心数据的有效性（如主体必填、邮件格式核准以及信息的垃圾防洪机制拦截）。
 
-#### Scenario: Submitting empty form
-- **WHEN** user clicks "Send" with empty inputs
-- **THEN** the system prevents submission and highlights error fields in red
+#### 场景: 在没有填充任何线索的情况下恶意尝试按键发送 (Submitting empty form)
+- **当 (WHEN)** 访客试图点击 "发送（Send）" 单击并略知输入为空时
+- **那么 (THEN)** 前台防御体系将阻拦该 Submit 操作并高亮标红警告缺失的核心单元模块。

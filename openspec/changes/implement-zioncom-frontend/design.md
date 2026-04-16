@@ -1,26 +1,26 @@
-## Context
+## 实施背景 (Context)
 
-Zioncom's website requires a production-ready Nuxt 3 frontend. The initial skeleton and basic routing currently exist, but we must implement high-fidelity UI components, robust product categorization filtering, and deeply interactive support service forms (e.g. 3-tier cascade select for models and firmware). We will use existing crawled assets (`crawl_output` dir) to achieve UI/UX matching `www.zioncom.net`.
+Zioncom 的网站需要一套生产级别的 Nuxt 3 前端系统。目前虽然已经存在基础骨架和基本路由，但我们需要落地高保真的 UI 组件、稳健的产品类别过滤机制以及具备高交互性的技术支持服务表单（例如固件与型号支持的三层级联选择）。我们将参考在 `crawl_output` 中抓取的网络素材来搭建，以保持与原有 `www.zioncom.net` 高度一致的 UI/UX 体验。
 
-## Goals / Non-Goals
+## 目标与非目标 (Goals / Non-Goals)
 
-**Goals:**
-- Implement global and local Nuxt 3 UI components conforming to a premium Glassmorphism aesthetic.
-- Construct data structures mapped to the real 14-category product hierarchy.
-- Build interactive frontend components (Product Cascade, Debounce Search, Support Form) using proper Composition API patterns.
-- Mock all API endpoints reliably prior to backend linkage.
+**目标：**
+- 落地实现基于 "玻璃拟态（Glassmorphism）" 现代高级审美规范的全局及局部 Nuxt 3 UI 组件。
+- 构建符合 14 层真实分类体系的高还原产品数据结构树。
+- 利用规范的 Composition API 模式建立诸如"三级防抖级联器"、"防抖全局搜索"、"响应式增强表单"等前端交互组件。
+- 在尚未连接到实装后端服务前，用 Mock 数据精准模拟所有的核心前后端接口。
 
-**Non-Goals:**
-- Connecting directly to live external REST APIs (data will be mocked via static JSON or composable stubs in this phase).
-- Writing the Java Spring Boot Backend logic.
+**非目标：**
+- 在此阶段中连接外部真实的公网 API（所有的数据展示都将使用静态 JSON 或 Composable 的 Mock 替代）。
+- 编写和修改关于 Java Spring Boot 后端的任何底层逻辑代码。
 
-## Decisions
+## 设计决策 (Decisions)
 
-- **Styling**: We will utilize Nuxt's native Vue component scoped styles (Vanilla CSS / SCSS if configured) with CSS Variables (Design Tokens) to systematically support the Glassmorphism, colors, and responsive mixins without introducing massive unvetted frameworks, adhering to exact project rules. 
-- **Mock Data Loading**: `useAsyncData` combined with our dynamic `useHttp.ts` will fetch predefined `json` structures (e.g., from `server/api/mock/..` or `public/data/..`) to emulate SSR caching cleanly.
-- **Cascade Form Logic**: The download center selection uses Vue 3 `watch` bindings combined with `lodash-es` or native `debounce` to fetch firmwares without spamming fetches.
+- **样式实现 (Styling)**：我们将直接利用纯生 CSS 变量技术（CSS Variables）与 Nuxt 内置的组件层叠作用域（Scoped Styles）创建一套 Design Tokens 控制台，有条理地在不引入巨大的、未审查的第三方原子级框架情况下，稳妥实现透明毛玻璃特效与配色体系，并严格遵守项目的禁用库规范。
+- **构建假数据模型 (Mock Data Loading)**：综合运用 `useFetch` / `useAsyncData` 以及我们定制解决过请求上下文丢失等问题的 `useHttp.ts`，调用由 `public/mock/..` 等预置 JSON 文件组成的目录，以在保证服务端 SSR 兼容水化逻辑完美呈现的同时，获取测试结构。
+- **级联组件控制逻辑 (Cascade Form Logic)**：下载中心模块引入 `lodash-es` 防抖控制函数组合 Vue 3 的局部计算侦测，控制多层连拉数据抓取时的资源开销防止密集拦截请求。
 
-## Risks / Trade-offs
+## 潜在风险与取舍 (Risks / Trade-offs)
 
-- [Risk] Reusing pure CSS might lead to bloated single-file components. → Mitigation: Establish a `assets/css/main.css` core token file for variables, spacing, shadows, and base animations. 
-- [Risk] SSR hydration mismatches when mapping deeply nested object trees (like the 14-tier products). → Mitigation: Clearly define TypeScript interfaces for the product models and ensure mock data is identical between server/client context.
+- [风险] 过分依赖纯 CSS 可能导致单文件组件内部样式堆叠。 → 对应缓解策略：单独拆分并建立核心 `assets/css/main.css` 设计令牌中心记录，将宏观排布及组件颜色分离。 
+- [风险] 深层分类（如 14 层产品数据树）的 SSR 服务端/客户端数据水化时，如果异步对象状态管理不足容易引起 Mismatch 不匹配问题。 → 对应缓解策略：借助 TypeScript 明确接口与模型并在 Mock 数据构建时使用 lazy 加载流缓冲。
