@@ -5,7 +5,17 @@
       <p>Search by product model to find firmware and manuals</p>
       
       <div class="search-box">
-        <input type="text" v-model="searchInput" @keyup.enter="handleSearch" placeholder="Enter product model (e.g. WR1200)" />
+        <ZCascadeSelector 
+          class="mb-8"
+          :options="mockTreeData"
+          placeholder1="Product Category"
+          placeholder2="Sub-category"
+          placeholder3="Select Model"
+          v-model="cascadeSelection"
+          @change="onCascadeChange"
+        />
+        
+        <input type="text" v-model="searchInput" @keyup.enter="handleSearch" placeholder="Or directly enter model (e.g. WR1200)" />
         <button @click="handleSearch">Search</button>
       </div>
     </div>
@@ -47,8 +57,13 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
+import { ref } from 'vue'
+import { debounce } from 'lodash-es'
+
+// @ts-ignore
 const { locale } = useI18n()
+// @ts-ignore
 const { request } = useHttp()
 
 const searchInput = ref('')
@@ -56,9 +71,28 @@ const searchKeyword = ref('')
 const hasSearched = ref(false)
 const pending = ref(false)
 
-const productId = ref(null)
-const firmwares = ref([])
-const documents = ref([])
+const productId = ref<any>(null)
+const firmwares = ref<any[]>([])
+const documents = ref<any[]>([])
+
+const cascadeSelection = ref<[string, string, string]>(['', '', ''])
+const mockTreeData = ref([
+  {
+    label: 'Wireless Router', value: 'router',
+    children: [
+      { label: 'Wi-Fi 6', value: 'wifi6', children: [{ label: 'AX3000', value: 'AX3000' }]},
+      { label: 'Wi-Fi 5', value: 'wifi5', children: [{ label: 'WR1200', value: 'WR1200' }, { label: 'A3000RU', value: 'A3000RU' }]}
+    ]
+  }
+])
+
+const onCascadeChange = debounce((val: [string, string, string]) => {
+  const model = val[2]
+  if (model) {
+    searchInput.value = model
+    handleSearch()
+  }
+}, 500)
 
 async function handleSearch() {
   if (!searchInput.value.trim()) return
@@ -119,14 +153,16 @@ useHead({ title: 'Download Center' })
 }
 .search-box {
   display: flex;
-  max-width: 500px;
+  flex-direction: column;
+  max-width: 600px;
   margin: 30px auto;
+  gap: 15px;
 }
 .search-box input {
   flex: 1;
   padding: 12px 15px;
   border: 1px solid #ccc;
-  border-radius: 4px 0 0 4px;
+  border-radius: var(--radius-md) 0 0 var(--radius-md);
   font-size: 1rem;
   outline: none;
 }
