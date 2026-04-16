@@ -1,6 +1,7 @@
 <template>
   <div>
     <HomeHeroBanner />
+    <HomeProductCarousel />
     <HomeQuickLinks />
     <HomeProductCategories />
     <HomeLatestNews />

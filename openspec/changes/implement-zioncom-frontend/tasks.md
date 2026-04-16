@@ -31,9 +31,9 @@
 
 ## 6. 首页视觉轮播图 (Home Carousel) 开发
 
-- [ ] 6.1 编排构建 `ZProductCarousel.vue` 组件，基于原生 CSS 构建水平卷轴滚动（`scroll-snap`），保证移动端触控划屏流畅。
-- [ ] 6.2 组建由核心热门产品素材（从 `crawl_output` 获取两三幅图）构成的焦点幻灯片模拟数据数组。
-- [ ] 6.3 在 `pages/index.vue` 主页 Banner 槽位挂载组件，并添加一个基于 Vue 生命周期函数的定时器实现数秒一次的自动无缝轮接效果。
+- [x] 6.1 编排构建 `ZProductCarousel.vue` 组件，基于原生 CSS 构建水平卷轴滚动（`scroll-snap`），保证移动端触控划屏流畅。
+- [x] 6.2 组建由核心热门产品素材（从 `crawl_output` 获取两三幅图）构成的焦点幻灯片模拟数据数组。
+- [x] 6.3 在 `pages/index.vue` 主页 Banner 槽位挂载组件，并添加一个基于 Vue 生命周期函数的定时器实现数秒一次的自动无缝轮接效果。
 
 ## 7. 产品字典及丰富化目录 (Product Detail Explosion)
 
