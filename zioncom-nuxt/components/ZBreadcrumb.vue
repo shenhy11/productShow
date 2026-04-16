@@ -2,7 +2,7 @@
   <nav class="breadcrumb-container" aria-label="Breadcrumb">
     <ol class="breadcrumb-list">
       <li class="breadcrumb-item">
-        <NuxtLink :to="localePath('/')" class="breadcrumb-link">{{ $t('nav.home') || 'Home' }}</NuxtLink>
+        <NuxtLink :to="localePath('/')" class="breadcrumb-link">{{ t('nav.home') || 'Home' }}</NuxtLink>
       </li>
       
       <li v-for="(crumb, index) in crumbs" :key="index" class="breadcrumb-item">
@@ -28,6 +28,7 @@ import { useRoute } from 'vue-router'
 
 const route = useRoute()
 const localePath = useLocalePath()
+const { t } = useI18n()
 
 const crumbs = computed(() => {
   const pathArray = route.path.split('/').filter(p => p && p !== 'en' && p !== 'zh')
