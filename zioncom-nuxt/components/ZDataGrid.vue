@@ -34,19 +34,19 @@
 </template>
 
 <script setup lang="ts">
-defineProps({
-  title: {
-    type: String,
-    default: ''
-  },
-  columns: {
-    type: Array as PropType<Array<{ key: string, label: string, width?: string }>>,
-    required: true
-  },
-  data: {
-    type: Array as PropType<Array<any>>,
-    default: () => []
-  }
+interface Column {
+  key: string
+  label: string
+  width?: string
+}
+
+withDefaults(defineProps<{
+  title?: string
+  columns: Column[]
+  data?: any[]
+}>(), {
+  title: '',
+  data: () => []
 })
 </script>
 
