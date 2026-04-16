@@ -34,7 +34,7 @@
         <div class="footer-grid">
           <div class="footer-brand">
             <h2 class="gradient-text">ZIONCOM</h2>
-            <p>Your Trusted Partner in Network Communication Solutions.</p>
+            <p>{{ $t('footer.slogan') }}</p>
           </div>
         </div>
         <div class="footer-bottom">

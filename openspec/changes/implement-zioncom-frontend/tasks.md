@@ -25,7 +25,7 @@
 
 ## 5. 国际化 (i18n) 全站深度重构
 
-- [ ] 5.1 审查并迁移全局 Header 与 Footer (Layouts)：收集所有导航链、产品与公司的外部直链接英文字段，统一注册入 `locales/en.json` 与 `zh.json`，并将源码节点替换为 `$t('nav.xxx')`。
+- [x] 5.1 审查并迁移全局 Header 与 Footer (Layouts)：收集所有导航链、产品与公司的外部直链接英文字段，统一注册入 `locales/en.json` 与 `zh.json`，并将源码节点替换为 `$t('nav.xxx')`。
 - [ ] 5.2 清洗 `pages/index.vue` (首页外露文案)：寻找 'Global Brand', 'Read More', 'Support Center' 等遗留硬编码字段进行翻译双绑重写。
 - [ ] 5.3 修复面包屑及动态侧边栏的隐性英文字符映射翻译逻辑。
 
