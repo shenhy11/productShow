@@ -9,6 +9,7 @@ RUN npm run build:prod
 # 第二阶段：Nginx 部署静态文件
 FROM nginx:alpine
 COPY --from=builder /app/dist /usr/share/nginx/html
-# 使用默认配置或自定义 conf（可以在docker-compose里挂载）
+# 覆盖 nginx 默认配置，支持 History 模式并转发后台 /prod-api 请求
+COPY zioncom-admin/nginx.conf /etc/nginx/conf.d/default.conf
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
