@@ -13,7 +13,7 @@
 
 ## 3. Product Display & Catalog
 
-- [ ] 3.1 Extract the 14-tier product categorizations from `crawl_output/crawl_results.json` and dump to `public/mock/categories.json`.
+- [x] 3.1 Extract the 14-tier product categorizations from `crawl_output/crawl_results.json` and dump to `public/mock/categories.json`.
 - [ ] 3.2 Implement `pages/products/index.vue` to fetch the category structure via `useAsyncData` + `mock/categories.json`.
 - [ ] 3.3 Create a dynamic Sidebar / Top-tab filter in `products/index.vue` to filter displayed `ZProductCard`s based on category.
 

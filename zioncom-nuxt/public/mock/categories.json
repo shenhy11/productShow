@@ -1,0 +1,82 @@
+[
+  {
+    "id": "wireless-router",
+    "name": "Wireless Router",
+    "icon": "router"
+  },
+  {
+    "id": "wireless-usb-adapter",
+    "name": "Wireless USB Adapter",
+    "icon": "usb"
+  },
+  {
+    "id": "5g-4g-router",
+    "name": "5G/4G Wi-Fi Router",
+    "icon": "wifi-tethering"
+  },
+  {
+    "id": "adsl",
+    "name": "ADSL",
+    "icon": "modem"
+  },
+  {
+    "id": "range-extender",
+    "name": "Range Extender",
+    "icon": "settings-input-antenna"
+  },
+  {
+    "id": "powerline-adapter",
+    "name": "Powerline Adapter",
+    "icon": "power"
+  },
+  {
+    "id": "pci-e-adapter",
+    "name": "PCI/PCI-E Adapter",
+    "icon": "developer-board"
+  },
+  {
+    "id": "outdoor-wireless",
+    "name": "Outdoor Wireless",
+    "icon": "cell-tower"
+  },
+  {
+    "id": "ceiling-ap",
+    "name": "Ceiling AP & In-Wall AP",
+    "icon": "router"
+  },
+  {
+    "id": "network-adapter",
+    "name": "Network Adapter",
+    "icon": "cable"
+  },
+  {
+    "id": "switch",
+    "name": "Switch",
+    "icon": "dns"
+  },
+  {
+    "id": "portable-power-bank",
+    "name": "Portable Power Bank",
+    "icon": "battery-charging-full"
+  },
+  {
+    "id": "iot",
+    "name": "IOT",
+    "icon": "smart-toy"
+  },
+  {
+    "id": "smart-conference",
+    "name": "Smart Conference System",
+    "icon": "meeting-room"
+  },
+  {
+    "id": "smart-storage",
+    "name": "Smart Storage",
+    "icon": "storage"
+  },
+  {
+    "id": "accessory",
+    "name": "Accessory",
+    "icon": "extension"
+  }
+]
