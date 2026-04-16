@@ -19,6 +19,6 @@
 
 ## 4. Support Services & Advanced Interactions
 
-- [ ] 4.1 Develop `ZCascadeSelector.vue` taking nested tree data for the 3-tier inputs.
+- [x] 4.1 Develop `ZCascadeSelector.vue` taking nested tree data for the 3-tier inputs.
 - [ ] 4.2 Implement `pages/support/download.vue` with `lodash-es` debounce calling `useHttp` API (or mock JSON) when third tier (Model) is selected.
 - [ ] 4.3 Update `pages/support/email-support.vue` with strict Javascript form validations ensuring no empty subject, email, or message.
