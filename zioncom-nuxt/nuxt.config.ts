@@ -29,9 +29,9 @@ export default defineNuxtConfig({
     '/products/**': { ssr: false },
     '/news/**':     { ssr: false },
     '/support/**':  { ssr: false },
-    // API 代理：硬编码 spring-api:8080（Docker 内部服务名）
-    // nuxt.config.ts 在 Build Time 运行，process.env 此时不可靠，不能用环境变量
-    '/api/**': { proxy: 'http://spring-api:8080/' }
+    // API 代理：硬编码 spring-api:8080（Docker 内部服务名）并正确承接 /** 后缀路径
+    // nuxt.config.ts 在 Build Time 运行，不能用环境变量处理 proxy，必须准确写死
+    '/api/**': { proxy: 'http://spring-api:8080/api/**' }
   },
 
   modules: [
