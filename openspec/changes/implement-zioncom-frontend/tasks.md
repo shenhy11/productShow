@@ -2,7 +2,7 @@
 
 - [x] 1.1 Create `assets/css/main.css` implementing brand colors (red `#E60012`/black) and Glassmorphism CSS variables (blur drops, borders).
 - [x] 1.2 Import `main.css` globally in `nuxt.config.ts` or `app.vue`.
-- [ ] 1.3 Create reusable global container/row utility classes mapped from Tailwind concepts to vanilla CSS variables.
+- [x] 1.3 Create reusable global container/row utility classes mapped from Tailwind concepts to vanilla CSS variables.
 
 ## 2. Core UI Components
 
