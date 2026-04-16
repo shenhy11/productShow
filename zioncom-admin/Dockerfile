@@ -10,6 +10,6 @@ RUN npm run build:prod
 FROM nginx:alpine
 COPY --from=builder /app/dist /usr/share/nginx/html
 # 覆盖 nginx 默认配置，支持 History 模式并转发后台 /prod-api 请求
-COPY zioncom-admin/nginx.conf /etc/nginx/conf.d/default.conf
+COPY nginx.conf /etc/nginx/conf.d/default.conf
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
