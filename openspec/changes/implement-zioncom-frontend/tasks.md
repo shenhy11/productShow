@@ -6,7 +6,7 @@
 
 ## 2. Core UI Components
 
-- [ ] 2.1 Develop `ZProductCard.vue` to display main product image, title, sub-specs, and include hover scaling/box-shadow variables.
+- [x] 2.1 Develop `ZProductCard.vue` to display main product image, title, sub-specs, and include hover scaling/box-shadow variables.
 - [ ] 2.2 Develop `ZBreadcrumb.vue` utilizing `vue-router`'s route matching to generate dynamic navigable links.
 - [ ] 2.3 Develop `ZDataGrid.vue` for clean table-styled FAQ data rendering.
 - [ ] 2.4 Test ZProductCard responsiveness across mobile/tablet formats.
