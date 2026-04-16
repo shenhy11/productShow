@@ -44,10 +44,7 @@ cd ~/productShow
 git fetch --all
 git pull origin feature-login
 
-# 3. 切换到部署编排目录
-cd deploy
-
-# 4. 根据最新代码重新打包构建，并剔除旧容器后台启动运行，重建整个前台或后端架构
+# 3. 根据最新代码重新打包构建，并剔除旧容器后台启动运行，重建整个前台或后端架构
 docker-compose -f docker-compose.yml up -d --build
 ```
 > **提示**：如果仅更新且不需要更新依赖缓存，以上四步是最稳健也是最自动化的方案。构建和重启期间 `Nginx` 将能够自动完成切流。
