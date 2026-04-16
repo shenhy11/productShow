@@ -33,12 +33,24 @@
 3. 启动开发服务器：`npm run dev`
 4. 访问：http://localhost:3000
 
-## 部署说明 (生产环境)
-我们提供了完整的 Docker Compose 和 GitHub Actions 部署方案：
-- 将代码提交至 `main` 分支后，由 `.github/workflows/deploy.yml` 自动打包镜像并发布到指定 Registry。
-- 然后利用 `docker-compose.prod.yml` 实施线上部署和配置。
+## 部署说明 (生产环境/阿里云更新流程)
+如果当前线上有新功能合并至 `feature-login`（或 `main`）分支，需要在阿里云服务器 (8.166.113.25) 上拉去最新代码并重新构建部署 Docker 容器，请使用 SSH 登入服务器并依次执行以下流程：
 
-详情可参考 `.github/workflows` 和 Dockerfile 相关设定。
+```bash
+# 1. 登录云服务器后，进入挂载代码的主工作区
+cd ~/productShow
+
+# 2. 从 Github 远端拉取刚才推送的最新应用代码更新（确保当前分支无冲突）
+git fetch --all
+git pull origin feature-login
+
+# 3. 切换到部署编排目录
+cd deploy
+
+# 4. 根据最新代码重新打包构建，并剔除旧容器后台启动运行，重建整个前台或后端架构
+docker-compose -f docker-compose.yml up -d --build
+```
+> **提示**：如果仅更新且不需要更新依赖缓存，以上四步是最稳健也是最自动化的方案。构建和重启期间 `Nginx` 将能够自动完成切流。
 
 ## 🌐 环境访问指引 (当前线上云服务器节点)
 
